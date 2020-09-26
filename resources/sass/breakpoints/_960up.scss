@@ -1,0 +1,40 @@
+/******************************************************************
+
+Stylesheet: 960px以上のモニタで適用
+
+******************************************************************/
+
+.header {
+  position: relative;
+
+}
+.navbar {
+  &__button {
+    display: none;
+  }
+  &__menu {
+    color: $fontColor;
+    position: absolute;
+    top: 0;
+    right: 13%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+    height: 100%;
+    background-color: $mainColor;
+  }
+  &__item {
+    color: $fontColor;
+    margin: 0;
+    font-weight: 600;
+  }
+}
+
+.form {
+  &__button {
+    &--loading {
+      left: 35%;
+    }
+  }
+}
