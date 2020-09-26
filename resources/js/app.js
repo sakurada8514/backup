@@ -6,6 +6,7 @@ import store from "./store";
 
 import App from "./App.vue";
 
+//ユーザー情報取得後アプリクリエイト
 const createApp = async () => {
     await store.dispatch("auth/currentUser");
     new Vue({

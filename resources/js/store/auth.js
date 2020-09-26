@@ -2,14 +2,24 @@ import Axios from "axios";
 import { OK, UNPROCESSABLE_ENTITY, CREATED } from "../util";
 
 const state = {
+    //ユーザー情報
     user: null,
+
+    //api通信結果
     apiStatus: null,
+
+    //会員登録エラーメッセージ
     registerErrorMessages: null,
+
+    //ログインエラーメッセージ
     loginErrorMessages: null
 };
 
 const getters = {
+    //ユーザーがログイン中かチェック
     check: state => !!state.user,
+
+    //ユーザーの名前
     userName: state => (state.user ? state.user.name : "")
 };
 
@@ -29,6 +39,7 @@ const mutations = {
 };
 
 const actions = {
+    //会員登録
     async register(context, data) {
         context.commit("setapiStatus", null);
         const response = await Axios.post("/api/register", data).catch(
@@ -47,6 +58,7 @@ const actions = {
             context.commit("error/setCode", response.status, { root: true });
         }
     },
+    //ログイン
     async login(context, data) {
         context.commit("setapiStatus", null);
         const response = await Axios.post("/api/login", data).catch(
@@ -64,6 +76,7 @@ const actions = {
             context.commit("error/setCode", response.status, { root: true });
         }
     },
+    //ログアウト
     async logout(context) {
         context.commit("setapiStatus", null);
         const response = await Axios.post("/api/logout").catch(
@@ -78,6 +91,7 @@ const actions = {
         context.commit("error/setCode", response.status, { root: true });
 
     },
+    //ログインユーザーチェック
     async currentUser(context) {
         context.commit("setapiStatus", null);
         const response = await axios.get("/api/user").catch(

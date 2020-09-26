@@ -42,11 +42,13 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    //googleアカウントログイン画面へ移動
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
 
+    //googleアカウント会員登録、ログイン処理
     public function handleGoogleCallback()
     {
         $googleUser = Socialite::driver('google')->stateless()->user();
@@ -65,11 +67,13 @@ class LoginController extends Controller
         return redirect()->route('top');
     }
 
+    //ログイン後ユーザー情報を返す
     protected function authenticated(Request $request, $user)
     {
         return $user;
     }
 
+    //ログアウト
     protected function loggedOut(Request $request)
     {
         $request->session()->regenerate();

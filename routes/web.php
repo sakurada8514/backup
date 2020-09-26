@@ -11,11 +11,13 @@
 |
 */
 
+//googleアカウントログイン
 Route::prefix('login')->name('login.')->group(function () {
     Route::get('/google', 'Auth\LoginController@redirectToGoogle')->name('google');
     Route::get('/google/callback', 'Auth\LoginController@handleGoogleCallback')->name('google.callback');
 });
 
+//初期HTML
 Route::get('/{any?}', function () {
     return view('index');
 })->where('any', '.+')->name('top');

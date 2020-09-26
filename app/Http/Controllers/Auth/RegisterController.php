@@ -72,6 +72,7 @@ class RegisterController extends Controller
         ]);
     }
 
+    //会員登録後ユーザー情報を返す
     protected function registered(Request $request, $user)
     {
         return $user;

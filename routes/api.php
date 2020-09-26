@@ -13,9 +13,17 @@ use Illuminate\Support\Facades\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+//会員登録
  Route::post('/register', 'Auth\RegisterController@register')->name('register');
+
+ //ログイン
  Route::post('/login', 'Auth\LoginController@login')->name('login');
+
+ //ログアウト
  Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
+ //ログイン中のユーザー情報
  Route::get('/user', function() {
      return Auth::user();
  })->name('user');

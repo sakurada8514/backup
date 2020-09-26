@@ -93,6 +93,7 @@ export default {
                 this.$router.push(`/${userName}/diaries`);
             }
         },
+        //ページ移動ごとにエラーリセット
         clearError() {
             this.$store.commit("auth/setRegisterErrorMessages", null);
         }
