@@ -67,10 +67,12 @@ class LoginController extends Controller
         return redirect()->route('top');
     }
 
-    //ログイン後ユーザー情報を返す
+    //ログイン後ユーザー情報と日記一覧を返す
     protected function authenticated(Request $request, $user)
     {
-        return $user;
+        $diaries = $user->diaries()->orderByDesc('entry_at')->get();
+
+        return ['user' => $user, 'diaries' => $diaries];
     }
 
     //ログアウト

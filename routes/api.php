@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DiaryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,6 +25,13 @@ use Illuminate\Support\Facades\Auth;
  Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
  //ログイン中のユーザー情報
- Route::get('/user', function() {
-     return Auth::user();
- })->name('user');
+ Route::get('/user', 'UserController@userCheck')->name('user');
+
+ //日記作成
+ Route::post('/diaries', 'DiaryController@create')->name('diaries.create');
+
+ //日記編集
+ Route::post('/diaries/{id}', 'DiaryController@update')->name('diaries.update');
+
+ //日記削除
+ Route::post('/diaries/{id}/delete', 'DiaryController@delete')->name('diaries.delete');

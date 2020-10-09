@@ -5,39 +5,139 @@ Stylesheet: 960px以上のモニタで適用
 ******************************************************************/
 
 //トップページ
-.header {
-  position: relative;
-
+.top {
+    .header {
+        position: relative;
+    }
+    .navbar {
+        &__button {
+            display: none;
+        }
+        &__menu {
+            color: $fontColor;
+            position: absolute;
+            top: 0;
+            right: 13%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 50%;
+            height: 100%;
+            background-color: $mainColor;
+        }
+        &__item {
+            color: $fontColor;
+            margin: 0;
+            font-weight: 600;
+        }
+    }
 }
-.navbar {
-  &__button {
-    display: none;
-  }
-  &__menu {
-    color: $fontColor;
-    position: absolute;
-    top: 0;
-    right: 13%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 50%;
-    height: 100%;
-    background-color: $mainColor;
-  }
-  &__item {
-    color: $fontColor;
-    margin: 0;
-    font-weight: 600;
-  }
-}
-
 
 //ログイン、会員登録フォーム
 .form {
-  &__button {
-    &--loading {
-      left: 35%;
+    &__button {
+        &--loading {
+            left: 35%;
+        }
     }
-  }
+}
+
+//ユーザーページ
+.userpage {
+    .navbar {
+        padding: 10px 60px 0 60px;
+        &__item {
+            font-size: 24px;
+        }
+        &__icon {
+            font-size: 35px;
+        }
+    }
+    .toDiaryCreateForm,.toDiarySearch {
+        width: 80px;
+        height: 80px;
+        font-size: 38px;
+    }
+    .contents {
+        padding-top: 120px;
+    }
+}
+
+
+//日記作成フォーム
+.diary-create {
+    &__title {
+        font-size: 32px;
+    }
+    .diary-form {
+        &__info {
+            padding: 0 25px;
+        }
+        &__entry,
+        &__exit {
+            padding: 0 25px;
+        }
+    }
+}
+
+//日記一覧
+.diary {
+    margin-bottom: 30px;
+    &__content {
+        display: flex;
+        justify-content: space-around;
+        padding: 0 10px 10px;
+    }
+    &__date {
+        font-size: 22px;
+    }
+    &__left {
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        padding: 0;
+        &--item {
+            width: 100%;
+            &:nth-child(1) {
+                margin-bottom: 10px;
+            }
+        }
+    }
+    &__right {
+        width: 80%;
+        display: flex;
+        justify-content: space-around;
+        padding-top: 0;
+        &--item {
+            width: 49%;
+        }
+    }
+    &__title {
+        font-size: 18px;
+    }
+}
+
+//日記詳細
+.diary-detail {
+    &__title {
+        font-size: 22px;
+        padding: 5px 0;
+    }
+    &__item {
+        margin-bottom: 25px;
+        &--text {
+            margin-bottom: 25px;
+        }
+    }
+    &__menu {
+        top: 13px;
+        &--content {
+            width: 20%;
+        }
+    }
+    .modal {
+        &__content {
+            width: 50%;
+        }
+    }
 }

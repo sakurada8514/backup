@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -72,9 +73,11 @@ class RegisterController extends Controller
         ]);
     }
 
-    //会員登録後ユーザー情報を返す
+    //会員登録後ユーザー情報と日記一覧を返す
     protected function registered(Request $request, $user)
     {
-        return $user;
+        $diaries = $user->diaries()->orderByDesc('entry_at')->get();
+
+        return ['user' => $user, 'diaries' => $diaries];
     }
 }

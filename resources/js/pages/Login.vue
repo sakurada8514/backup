@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <router-link to="/" tag="h1" class="form__logo"
-            ><span class="navbar__logo--blue">FX</span>日記</router-link
+            ><span class="form__logo--blue">FX</span>日記</router-link
         >
         <div class="form">
             <h2 class="form__title">ログイン</h2>
@@ -11,10 +11,8 @@
                     <input
                         class="form__item--input"
                         type="text"
-                        id="email"
                         name="email"
                         required
-                        value=""
                         v-model="loginForm.email"
                     />
                     <ul v-if="loginErrors" class="form__error">
@@ -32,7 +30,6 @@
                     <input
                         class="form__item--input"
                         type="password"
-                        id="password"
                         name="password"
                         required
                         v-model="loginForm.password"
@@ -90,7 +87,7 @@ export default {
             this.loading = false;
             if (this.apiStatus) {
                 const userName = this.$store.getters["auth/userName"];
-                this.$router.push(`/${userName}/diaries`);
+                this.$router.push(`/${userName}/diaries/list/`);
             }
         },
         //ページ移動ごとにエラーリセット

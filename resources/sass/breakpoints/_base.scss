@@ -8,7 +8,7 @@ body,
 html {
     font-family: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ",
         "Meiryo", "verdana", sans-serif;
-    
+
     color: $fontColor;
 }
 .container {
@@ -16,85 +16,84 @@ html {
     min-height: 100vh;
 }
 
-
 //トップページ
-.header {
-    background-color: $mainColor;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    overflow: hidden;
-    width: 90%;
-    max-width: $contentMaxWidth;
-    margin: 0 auto;
-    &__logo {
-        margin: 10px 10px;
-        &--blue {
-            color: $subColor;
-        }
+.top {
+    .header {
+        background-color: $mainColor;
     }
-    &__menu {
+    .navbar {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        margin: 0;
-        background-color: rgba(0, 0, 0, 0.8);
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        transition: transform 0.5s;
-        &_open {
-            transform: translateX(-100%);
-        }
-    }
-    &__item {
-        color: white;
-        margin-bottom: 50px;
-        font-size: 20px;
-        cursor: pointer;
-    }
-    &__button {
-        z-index: 2;
-        background-color: unset;
-        border: none;
-        cursor: pointer;
-        outline: none !important;
-        padding: 20px 10px;
-        span {
-            width: 30px;
-            height: 3px;
-            border-radius: 1px;
-            background-color: black;
-            display: block;
-            margin-bottom: 8px;
-            transition: transform 0.5s;
-            &:last-child {
-                margin-bottom: 0;
+        justify-content: space-between;
+        overflow: hidden;
+        width: 90%;
+        max-width: $contentMaxWidth;
+        margin: 0 auto;
+        &__logo {
+            margin: 10px 10px;
+            &--blue {
+                color: $subColor;
             }
         }
-        &_open {
+        &__menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            transition: transform 0.5s;
+            &_open {
+                transform: translateX(-100%);
+            }
+        }
+        &__item {
+            color: white;
+            margin-bottom: 50px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        &__button {
+            z-index: 2;
+            background-color: unset;
+            border: none;
+            cursor: pointer;
+            outline: none !important;
+            padding: 20px 10px;
             span {
-                background-color: white;
-                &:nth-child(1) {
-                    transform: translateY(10px) rotate(315deg);
+                width: 30px;
+                height: 3px;
+                border-radius: 1px;
+                background-color: black;
+                display: block;
+                margin-bottom: 8px;
+                transition: transform 0.5s;
+                &:last-child {
+                    margin-bottom: 0;
                 }
-                &:nth-child(2) {
-                    opacity: 0;
-                }
-                &:nth-child(3) {
-                    transform: translateY(-11px) rotate(-315deg);
+            }
+            &_open {
+                span {
+                    background-color: white;
+                    &:nth-child(1) {
+                        transform: translateY(10px) rotate(315deg);
+                    }
+                    &:nth-child(2) {
+                        opacity: 0;
+                    }
+                    &:nth-child(3) {
+                        transform: translateY(-11px) rotate(-315deg);
+                    }
                 }
             }
         }
     }
 }
-
 
 //ログイン、会員登録フォーム
 .form {
@@ -112,6 +111,9 @@ html {
         margin: 20px 0;
         font-size: 36px;
         margin-top: 0;
+        &--blue {
+            color: $subColor;
+        }
     }
     &__title {
         font-weight: 400;
@@ -142,8 +144,9 @@ html {
     &__error {
         margin: 0;
         padding: 0;
-        &--msg {
-            color: #ff3646;
+        color: #ff3646;
+        &--notice {
+            text-align: center;
         }
     }
     &__button {
@@ -218,6 +221,530 @@ html {
     }
 }
 
+//システムエラーページ
 .system-error__msg {
     text-align: center;
+}
+
+//ユーザーページ
+.userpage {
+    min-height: 100vh;
+    .navbar {
+        padding-top: 10px;
+        display: flex;
+        justify-content: space-around;
+        border-bottom: 3px solid $mainColor;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: $baseColor;
+        z-index: 10;
+        &__item {
+            color: $fontColor;
+            margin: 0 0 10px 0;
+            font-size: 20px;
+        }
+        &__icon {
+            display: block;
+            text-align: center;
+        }
+        .router-link-active {
+            color: $subColor;
+        }
+    }
+    .footer {
+        text-align: center;
+        background-color: $mainColor;
+        width: 100%;
+        &__text {
+            font-size: 10px;
+            padding-top: 5px;
+        }
+        &__button {
+            background-color: $mainColor;
+            border: none;
+            font-size: 12px;
+            font-weight: 400;
+            margin-bottom: 3px;
+        }
+    }
+    .toDiaryCreateForm,
+    .toDiarySearch {
+        position: fixed;
+        bottom: 5%;
+        right: 4%;
+        background-color: $subColor;
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 35px;
+        box-shadow: 0 10px 25px 3px rgba(0, 0, 0, 0.15),
+            0 1px 4px 0 rgba(0, 0, 0, 0.03);
+        cursor: pointer;
+        &:hover {
+            background-color: #5289bd;
+        }
+    }
+    .toDiarySearch {
+        left: 4%;
+    }
+    .contents {
+        padding: 85px 15px 15px 15px;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        min-height: calc(100vh - 46px);
+    }
+}
+
+//日記一覧ページ
+.diary {
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+        0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    &__date {
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 10px;
+        padding: 5px 0;
+        border-radius: 5px 5px 0 0;
+        background-color: $mainColor;
+    }
+    &__left {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 10px;
+        &--item {
+            width: 49%;
+        }
+    }
+    &__right {
+        padding: 10px;
+    }
+    &__text {
+        margin-bottom: 10px;
+    }
+    &__title {
+        font-size: 18px;
+        font-weight: 600;
+        border-bottom: 1px solid #d4d4d4;
+    }
+    &__result {
+        &.entry {
+            color: #1e1e1e;
+        }
+        &.lose {
+            color: #db2f3d;
+        }
+        &.win {
+            color: #4183c0;
+        }
+    }
+}
+
+//日記詳細ページ
+.diary-detail {
+    &__content {
+        max-width: $contentMaxWidth;
+        margin: 0 auto;
+        padding: 0 0 20px;
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+            0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        position: relative;
+    }
+    &__title {
+        font-weight: 600;
+        background-color: $mainColor;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 20px;
+        padding: 3px 0;
+    }
+    &__info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 0 10px;
+    }
+    &__item {
+        width: 49%;
+        margin-bottom: 15px;
+        &--title {
+            font-size: 18px;
+            font-weight: 600;
+            border-bottom: 1px solid #d4d4d4;
+        }
+        &--text {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        &--img {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+    }
+    &__settlement {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 0 10px;
+    }
+    &__button {
+        display: block;
+        margin: 0 auto;
+        margin-top: 15px;
+        width: 180px;
+        color: white;
+        border-radius: 3px;
+        border: none;
+        padding: 5px 0;
+        background-color: $subColor;
+    }
+    &__img {
+        max-width: 100%;
+        height: auto;
+    }
+    &__menu {
+        position: absolute;
+        top: 11px;
+        right: 10px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        &--button {
+            width: 30px;
+            padding-left: 10px;
+            display: flex;
+            flex-direction: column;
+            span {
+                display: inline-block;
+                background-color: #1e1e1e;
+                border-radius: 50%;
+                width: 5px;
+                height: 5px;
+                margin-bottom: 2px;
+                &:nth-child(3) {
+                    margin: 0;
+                }
+            }
+        }
+        &--content {
+            border: 1px solid #b6b5b5;
+            background-color: $baseColor;
+            border-radius: 3px;
+            width: 40%;
+            position: absolute;
+            top: 35px;
+            right: 15px;
+        }
+        &--item {
+            cursor: pointer;
+            text-align: center;
+            i {
+                margin-right: 5px;
+            }
+            &:nth-child(1) {
+                color: #1e1e1e;
+                border-bottom: 1px solid #b6b5b5;
+                padding: 10px 20px;
+            }
+            &:nth-child(2) {
+                button {
+                    border: none;
+                    color: #db2f3d;
+                    background-color: $baseColor;
+                    padding: 10px 20px;
+                }
+            }
+        }
+    }
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 100;
+        &__content {
+            background-color: $baseColor;
+            z-index: 150;
+            width: 90%;
+            border-radius: 5px;
+            margin: 0 auto;
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px 0;
+        }
+        &__select {
+            margin-top: 15px;
+        }
+        &__button {
+            border: none;
+            border-radius: 3px;
+            padding: 5px 0;
+            width: 90px;
+            &:nth-child(1) {
+                border: 1px solid #1e1e1e;
+                margin-right: 10px;
+                background-color: $baseColor;
+            }
+            &:nth-child(2) {
+                border: 1px solid #db2f3d;
+                color: white;
+                margin-left: 10px;
+                background-color: #db2f3d;
+            }
+        }
+    }
+}
+
+//日記記入ページ
+.diary-create {
+    &__title {
+        text-align: center;
+        font-weight: 600;
+        font-size: 28px;
+        background-color: $mainColor;
+        margin-bottom: 10px;
+        border-radius: 5px 5px 0 0;
+    }
+    .diary-form {
+        max-width: $contentMaxWidth;
+        margin: 0 auto;
+        padding: 0 0 20px;
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+            0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        &__info {
+            text-align: center;
+            padding: 0 10px;
+        }
+        &__title {
+            font-weight: 600;
+            font-size: 20px;
+            background-color: $mainColor;
+            text-align: center;
+            margin-top: 30px;
+            padding: 3px 0;
+        }
+        &__item {
+            margin-bottom: 15px;
+            text-align: left;
+            &--input {
+                height: 40px;
+                width: 100%;
+                background-color: $baseColor;
+                padding: 5px;
+                border: none;
+                border: 1px solid #b3b3b3;
+                border-radius: 3px;
+                font-size: 16px;
+                &:focus {
+                    outline: none;
+                    border: 1px solid $subColor;
+                }
+                &.settlement {
+                    width: 85%;
+                    margin-right: 5px;
+                }
+            }
+            &--label {
+                margin: 0;
+                font-weight: 600;
+                font-size: 18px;
+                &.radio {
+                    display: block;
+                }
+            }
+            &--file {
+                font-size: 14px;
+            }
+            &--textarea {
+                width: 100%;
+                height: 100px;
+                overflow: scroll;
+                background-color: $baseColor;
+                padding: 5px;
+                border: none;
+                border: 1px solid #b3b3b3;
+                border-radius: 3px;
+                font-size: 16px;
+                &:focus {
+                    outline: none;
+                    border: 1px solid $subColor;
+                }
+            }
+            &--radio {
+                margin-left: 10px;
+            }
+            &--code {
+                width: 20px;
+                display: inline-block;
+                text-align: right;
+                font-size: 18px;
+            }
+        }
+        &__entry {
+            padding: 0 10px;
+        }
+        &__exit {
+            padding: 0 10px;
+        }
+        &__preview {
+            padding: 10px;
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+        &__button {
+            display: block;
+            margin: 0 auto;
+            margin-top: 25px;
+            width: 50%;
+            color: white;
+            border-radius: 3px;
+            border: none;
+            padding: 5px 0;
+            background-color: $subColor;
+            position: relative;
+            &--loading {
+                position: absolute;
+                top: 45%;
+                left: 15%;
+                display: inline-block;
+                width: 7px;
+                height: 7px;
+                background-color: #ffffff;
+                border-radius: 50%;
+                animation: loading 1.2s infinite;
+            }
+            @keyframes loading {
+                0% {
+                    transform: scale(0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        }
+    }
+    .diary-edit__button {
+        text-align: center;
+        margin-top: 20px;
+        &--done {
+            display: inline-block;
+            width: 45%;
+            color: white;
+            border-radius: 3px;
+            border: none;
+            padding: 5px 0;
+            background-color: $subColor;
+            position: relative;
+            margin-left: 5px;
+        }
+        &--cancel {
+            display: inline-block;
+            width: 45%;
+            color: white;
+            border-radius: 3px;
+            border: none;
+            padding: 5px 0;
+            background-color: #db2f3d;
+            margin-right: 5px;
+        }
+    }
+}
+
+
+//日記検索ページ
+.search {
+    .search-form {
+        max-width: $contentMaxWidth;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        width: 100%;
+        padding-bottom: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+            0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        &__content {
+            padding: 10px;
+        }
+        &__title {
+            text-align: center;
+            font-weight: 600;
+            font-size: 28px;
+            background-color: $mainColor;
+            margin-bottom: 10px;
+            border-radius: 5px 5px 0 0;
+        }
+        &__item {
+            margin-bottom: 15px;
+            text-align: left;
+            &--input {
+                height: 40px;
+                width: 100%;
+                background-color: $baseColor;
+                padding: 5px;
+                border: none;
+                border: 1px solid #b3b3b3;
+                border-radius: 3px;
+                font-size: 16px;
+                &:focus {
+                    outline: none;
+                    border: 1px solid $subColor;
+                }
+            }
+            &--label {
+                margin: 0;
+                font-weight: 600;
+                font-size: 18px;
+                &.radio {
+                    display: block;
+                }
+            }
+            &--radio {
+                margin-left: 10px;
+            }
+        }
+        &__buttonarea {
+            display: flex;
+            justify-content: space-around;
+            padding: 0 10px;
+        }
+        &__button {
+            width: 35%;
+            color: white;
+            border-radius: 3px;
+            border: none;
+            padding: 5px 0;
+            background-color: $subColor;
+        }
+    }
+    &__count {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+}
+
+.diarylist__non {
+    text-align: center;
+    margin-top: 30px;
 }

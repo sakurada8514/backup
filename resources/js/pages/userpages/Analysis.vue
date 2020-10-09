@@ -1,3 +1,3 @@
 <template>
-    <h1>diary</h1>
+    <h1>ana</h1>
 </template>

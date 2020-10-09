@@ -95,7 +95,7 @@ return [
     'numeric'              => ':attributeには、数字を指定してください。',
     'present'              => ':attributeが存在していません。',
     'regex'                => ':attributeに正しい形式を指定してください。',
-    'required'             => ':attributeは必ず指定してください。',
+    'required'             => ':attributeは必ず記入してください。',
     'required_if'          => ':otherが:valueの場合、:attributeも指定してください。',
     'required_unless'      => ':otherが:valuesでない場合、:attributeを指定してください。',
     'required_with'        => ':valuesを指定する場合は、:attributeも指定してください。',
@@ -149,6 +149,20 @@ return [
         'name' => 'ユーザー名',
         'email' => 'メールアドレス',
         'password' => 'パスワード',
+        'currency' => '取引通貨',
+        'entry_img' => 'エントリー画像',
+        'exit_img' => 'エグジット画像',
+        'entry_at' => 'エントリー日時',
+        'exit_at' => 'エグジット日時',
+        'entry_rate' => 'エントリーレート',
+        'exit_rate' => 'エグジットレート',
+        'position' => 'エントリー方向',
+        'lot' => 'ロット数',
+        'rationale' => 'エントリー理由',
+        'reflection' => '反省',
+        'result' => '結果',
+        'settlement' => '決済損益'
+
     ],
 
 ];

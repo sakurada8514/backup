@@ -1,4 +1,4 @@
-import Axios from "axios";
+import axios from "axios";
 import { OK, UNPROCESSABLE_ENTITY, CREATED } from "../util";
 
 const state = {
@@ -35,76 +35,93 @@ const mutations = {
     },
     setLoginErrorMessages(state, messages) {
         state.loginErrorMessages = messages;
-    },
+    }
 };
 
 const actions = {
     //会員登録
     async register(context, data) {
         context.commit("setapiStatus", null);
-        const response = await Axios.post("/api/register", data).catch(
-            err => err.response || err
-        );
-        if (response.status === CREATED) {
+        const response = await axios
+            .post("/api/register", data)
+            .catch(err => err.response || err);
+
+        //通信成功したらユーザー情報と日記情報をセット
+        if (response.status === OK) {
             context.commit("setapiStatus", true);
-            context.commit("setUser", response.data);
+            context.commit("setUser", response.data.user);
+            const diaries = response.data.diaries || null;
+            context.commit("diaries/setDiaries", diaries, { root: true });
             return;
         }
 
         context.commit("setapiStatus", false);
-        if(response.status === UNPROCESSABLE_ENTITY) {
-            context.commit('setRegisterErrorMessages', response.data.errors)
-        }else {
+        //バリデーションエラー
+        if (response.status === UNPROCESSABLE_ENTITY) {
+            context.commit("setRegisterErrorMessages", response.data.errors);
+        } else {
+            //システムエラー
             context.commit("error/setCode", response.status, { root: true });
         }
     },
     //ログイン
     async login(context, data) {
         context.commit("setapiStatus", null);
-        const response = await Axios.post("/api/login", data).catch(
-            err => err.response || err
-        );
+        const response = await axios
+            .post("/api/login", data)
+            .catch(err => err.response || err);
+
+        //通信成功したらユーザー情報と日記情報をセット
         if (response.status === OK) {
             context.commit("setapiStatus", true);
-            context.commit("setUser", response.data);
+            context.commit("setUser", response.data.user);
+            const diaries = response.data.diaries || null;
+            context.commit("diaries/setDiaries", diaries, { root: true });
             return;
-        };
+        }
         context.commit("setapiStatus", false);
-        if(response.status === UNPROCESSABLE_ENTITY) {
-            context.commit('setLoginErrorMessages', response.data.errors)
-        }else {
+        //バリデーションエラー
+        if (response.status === UNPROCESSABLE_ENTITY) {
+            context.commit("setLoginErrorMessages", response.data.errors);
+        } else {
+            //システムエラー
             context.commit("error/setCode", response.status, { root: true });
         }
     },
     //ログアウト
     async logout(context) {
         context.commit("setapiStatus", null);
-        const response = await Axios.post("/api/logout").catch(
-            err => err.response || err
-        );
+        const response = await axios
+            .post("/api/logout")
+            .catch(err => err.response || err);
+
+        //通信成功したらユーザー情報と日記情報をリセット
         if (response.status === OK) {
             context.commit("setapiStatus", true);
             context.commit("setUser", null);
+            context.commit("diaries/setDiaries", null, { root: true });
             return;
-        };
+        }
         context.commit("setapiStatus", false);
+        //システムエラー
         context.commit("error/setCode", response.status, { root: true });
-
     },
     //ログインユーザーチェック
     async currentUser(context) {
-        context.commit("setapiStatus", null);
-        const response = await axios.get("/api/user").catch(
-            err => err.response || err
-        );
-        const user = response.data || null;
-        if (response.status === OK) {
-            context.commit("setapiStatus", true);
-            context.commit("setUser", user);
-            return;
-        };
+        const response = await axios
+            .get("/api/user")
+            .catch(err => err.response || err);
 
-        context.commit("setapiStatus", false);
+        //通信成功したらユーザー情報と日記情報をセット
+        if (response.status === OK) {
+            const user = response.data.user || null;
+            context.commit("setUser", user);
+            const diaries = response.data.diaries || null;
+            context.commit("diaries/setDiaries", diaries, { root: true });
+            return;
+        }
+
+        //システムエラー
         context.commit("error/setCode", response.status, { root: true });
     }
 };
