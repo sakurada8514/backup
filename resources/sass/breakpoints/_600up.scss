@@ -3,7 +3,13 @@
 Stylesheet: 600px以上のタブレットやモニタで適用
 
 ******************************************************************/
-
+.form {
+    &__button {
+        &--loading {
+            left: 15%;
+        }
+    }
+}
 .diary-create {
     &__title {
         font-size: 32px;
@@ -102,5 +108,21 @@ Stylesheet: 600px以上のタブレットやモニタで適用
         &__button {
           width: 30%;
         }
+    }
+}
+
+.analysis {
+    &__currency-chart, &__position-chart {
+        width: 65%;
+    }
+    &__win-rate, &__total {
+        width: 60%;
+        margin-bottom: 50px;
+    }
+    &__content {
+        font-size: 32px;
+    }
+    &__title {
+        font-size: 24px;
     }
 }

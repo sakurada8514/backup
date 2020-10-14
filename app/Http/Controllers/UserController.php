@@ -11,7 +11,11 @@ class UserController extends Controller
     public function userCheck()
     {
         $user = Auth::user();
-        $diaries = $user->diaries()->orderByDesc('entry_at')->get();
+        if ($user) {
+            $diaries = $user->diaries()->orderByDesc('entry_at')->get();
+        }else {
+            $diaries = [];
+        }
 
         return ['user' => $user, 'diaries' => $diaries];
     }

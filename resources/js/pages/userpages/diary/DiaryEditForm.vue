@@ -342,10 +342,13 @@
                     キャンセル
                 </button>
                 <button class="diary-edit__button--done" type="submit">
-                    <span
-                        v-show="loading"
-                        class="diary-form__button--loading edit"
-                    ></span>
+                    <vue-loading
+                        type="bubbles"
+                        color="#fff"
+                        :size="{ width: '30px', height: '30px' }"
+                        v-if="loading"
+                        class="diary-edit__button--loading"
+                    ></vue-loading>
                     記入完了
                 </button>
             </div>
@@ -359,7 +362,11 @@
 </template>
 
 <script>
+import { VueLoading } from "vue-loading-template";
 export default {
+    components: {
+        VueLoading
+    },
     data() {
         return {
             diaryEditForm: {
@@ -491,10 +498,8 @@ export default {
             this.diaryEditForm.settlement = this.settlementFormat();
             this.diaryEditForm.entry_rate = this.diary.entry_rate;
             this.diaryEditForm.rationale = this.diary.rationale;
-            this.diaryEditForm.entry_img = this.diary.entry_img || "";
             this.diaryEditForm.exit_rate = this.diary.exit_rate || "";
             this.diaryEditForm.reflection = this.diary.reflection || "";
-            this.diaryEditForm.exit_img = this.diary.exit_img || "";
             this.diaryEditForm.entry_at = this.timeFormat(this.diary.entry_at);
             this.diaryEditForm.exit_at = this.timeFormat(this.diary.exit_at);
 

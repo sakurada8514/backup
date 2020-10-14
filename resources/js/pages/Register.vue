@@ -74,7 +74,13 @@
                     />
                 </div>
                 <button class="form__button" type="submit">
-                    <span v-show="loading" class="form__button--loading"></span
+                    <vue-loading
+                        type="bubbles"
+                        color="#fff"
+                        :size="{ width: '30px', height: '30px' }"
+                        v-if="loading"
+                        class="form__button--loading"
+                    ></vue-loading
                     >ユーザー登録
                 </button>
             </form>
@@ -90,7 +96,11 @@
 </template>
 
 <script>
+import { VueLoading } from "vue-loading-template";
 export default {
+    components: {
+        VueLoading
+    },
     data() {
         return {
             registerForm: {

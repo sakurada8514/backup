@@ -14,6 +14,11 @@ const state = {
     searchFormData: null
 };
 
+const getters = {
+    //日記が記入されているかチェック
+    check: state => state.diaries.length !== 0
+};
+
 const mutations = {
     setDiaries(state, diaries) {
         state.diaries = diaries;
@@ -29,7 +34,7 @@ const mutations = {
     },
     setsearchFormData(state, formData) {
         state.searchFormData = formData;
-    },
+    }
 };
 
 const actions = {
@@ -40,7 +45,7 @@ const actions = {
             .post("/api/diaries", data)
             .catch(err => err.response || err);
 
-            //通信成功したら日記情報をセット
+        //通信成功したら日記情報をセット
         if (response.status === OK) {
             context.commit("setDiaries", response.data);
             context.commit("setapiStatus", true);
@@ -62,7 +67,7 @@ const actions = {
             .post(`/api/diaries/${id}`, data)
             .catch(err => err.response || err);
 
-            //通信成功したら日記情報をセット
+        //通信成功したら日記情報をセット
         if (response.status === OK) {
             context.commit("setDiaries", response.data);
             context.commit("setapiStatus", true);
@@ -84,7 +89,7 @@ const actions = {
             .post(`/api/diaries/${id}/delete`)
             .catch(err => err.response || err);
 
-            //通信成功したら日記情報をセット
+        //通信成功したら日記情報をセット
         if (response.status === OK) {
             context.commit("setDiaries", response.data);
             context.commit("setapiStatus", true);
@@ -98,12 +103,13 @@ const actions = {
             //システムエラー
             context.commit("error/setCode", response.status, { root: true });
         }
-    },
+    }
 };
 
 export default {
     namespaced: true,
     state,
+    getters,
     mutations,
     actions
 };

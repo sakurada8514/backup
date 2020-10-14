@@ -34,13 +34,7 @@ Stylesheet: 960px以上のモニタで適用
 }
 
 //ログイン、会員登録フォーム
-.form {
-    &__button {
-        &--loading {
-            left: 35%;
-        }
-    }
-}
+
 
 //ユーザーページ
 .userpage {
@@ -59,7 +53,7 @@ Stylesheet: 960px以上のモニタで適用
         font-size: 38px;
     }
     .contents {
-        padding-top: 120px;
+      padding: 120px 25px 15px 25px;
     }
 }
 
@@ -140,4 +134,11 @@ Stylesheet: 960px以上のモニタで適用
             width: 50%;
         }
     }
+}
+
+
+.analysis {
+  &__currency-chart, &__position-chart {
+      width: 50%;
+  }
 }

@@ -355,10 +355,13 @@
             </div>
             <button class="diary-form__button" type="submit">
                 <!-- API通信中のみローディング表示 -->
-                <span
-                    v-show="loading"
-                    class="diary-form__button--loading"
-                ></span>
+                <vue-loading
+                type="bubbles"
+                color="#fff"
+                :size="{ width: '30px', height: '30px' }"
+                v-if="loading"
+                class="diary-form__button--loading"
+            ></vue-loading>
                 記入完了
             </button>
             <ul v-if="diariesErrors" class="form__error">
@@ -371,7 +374,11 @@
 </template>
 
 <script>
+import { VueLoading } from "vue-loading-template";
 export default {
+    components: {
+        VueLoading
+    },
     data() {
         return {
             //日記作成データ

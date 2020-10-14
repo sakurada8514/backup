@@ -3,7 +3,9 @@
 Stylesheet: ベーススタイル
 
 ******************************************************************/
-
+[v-cloak] {
+    display: none;
+}
 body,
 html {
     font-family: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ",
@@ -159,24 +161,8 @@ html {
         position: relative;
         &--loading {
             position: absolute;
-            top: 45%;
-            left: 20%;
-            display: inline-block;
-            width: 7px;
-            height: 7px;
-            background-color: #ffffff;
-            border-radius: 50%;
-            animation: loading 1.2s infinite;
-        }
-        @keyframes loading {
-            0% {
-                transform: scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(4);
-                opacity: 0;
-            }
+            top: 15%;
+            left: 10%;
         }
     }
     &__to {
@@ -319,11 +305,11 @@ html {
     }
     &__left {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         padding: 0 10px;
         &--item {
-            width: 49%;
+            width: 47%;
         }
     }
     &__right {
@@ -373,11 +359,11 @@ html {
     &__info {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: space-between;
         padding: 0 10px;
     }
     &__item {
-        width: 49%;
+        width: 48%;
         margin-bottom: 15px;
         &--title {
             font-size: 18px;
@@ -396,7 +382,7 @@ html {
     &__settlement {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: space-between;
         padding: 0 10px;
     }
     &__button {
@@ -623,24 +609,8 @@ html {
             position: relative;
             &--loading {
                 position: absolute;
-                top: 45%;
-                left: 15%;
-                display: inline-block;
-                width: 7px;
-                height: 7px;
-                background-color: #ffffff;
-                border-radius: 50%;
-                animation: loading 1.2s infinite;
-            }
-            @keyframes loading {
-                0% {
-                    transform: scale(0);
-                    opacity: 1;
-                }
-                100% {
-                    transform: scale(4);
-                    opacity: 0;
-                }
+                top: 0;
+                left: 10%;
             }
         }
     }
@@ -668,9 +638,13 @@ html {
             background-color: #db2f3d;
             margin-right: 5px;
         }
+        &--loading {
+            position: absolute;
+            top: 0;
+            left: 10%;
+        }
     }
 }
-
 
 //日記検索ページ
 .search {
@@ -747,4 +721,46 @@ html {
 .diarylist__non {
     text-align: center;
     margin-top: 30px;
+}
+
+.analysis {
+    &__currency-chart,
+    &__position-chart {
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+    &__currency-chart {
+        margin-top: 50px;
+    }
+    &__win-rate,
+    &__total {
+        max-width: $contentMaxWidth;
+        margin: 0 auto;
+        width: 100%;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-bottom: 2px solid $mainColor;
+    }
+    &__content {
+        font-size: 28px;
+    }
+    &__title {
+        font-size: 22px;
+    }
+    &__loading {
+        margin-top: 50px;
+        &--text {
+            text-align: center;
+            margin-top: 20px;
+        }
+    }
+    .profit {
+        color: #4183c0;
+    }
+    .loss {
+        color: #db2f3d;
+    }
 }

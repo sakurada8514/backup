@@ -1,21 +1,15 @@
 <template>
     <div class="userpage">
         <div class="navbar">
-            <router-link
-                :to="{ name: 'diariesList'}"
-                class="navbar__item"
+            <router-link :to="{ name: 'diariesList' }" class="navbar__item"
                 ><i class="fa fa-list-ol navbar__icon" aria-hidden="true"></i
                 >日記</router-link
             >
-            <router-link
-                :to="{ name: 'analysis'}"
-                class="navbar__item"
+            <router-link :to="{ name: 'analysis' }" class="navbar__item"
                 ><i class="fa fa-pie-chart navbar__icon" aria-hidden="true"></i
                 >分析</router-link
             >
-            <router-link
-                :to="{ name: 'share'}"
-                class="navbar__item"
+            <router-link :to="{ name: 'share' }" class="navbar__item"
                 ><i class="fa fa-share-alt navbar__icon" aria-hidden="true"></i
                 >共有</router-link
             >
