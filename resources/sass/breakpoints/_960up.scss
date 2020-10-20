@@ -33,9 +33,6 @@ Stylesheet: 960px以上のモニタで適用
     }
 }
 
-//ログイン、会員登録フォーム
-
-
 //ユーザーページ
 .userpage {
     .navbar {
@@ -47,16 +44,16 @@ Stylesheet: 960px以上のモニタで適用
             font-size: 35px;
         }
     }
-    .toDiaryCreateForm,.toDiarySearch {
+    .toDiaryCreateForm,
+    .toDiarySearch {
         width: 80px;
         height: 80px;
         font-size: 38px;
     }
     .contents {
-      padding: 120px 25px 15px 25px;
+        padding: 120px 25px 15px 25px;
     }
 }
-
 
 //日記作成フォーム
 .diary-create {
@@ -117,8 +114,14 @@ Stylesheet: 960px以上のモニタで適用
         font-size: 22px;
         padding: 5px 0;
     }
+    &__info, &__settlement {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
     &__item {
         margin-bottom: 25px;
+        width: 48%;
         &--text {
             margin-bottom: 25px;
         }
@@ -136,9 +139,10 @@ Stylesheet: 960px以上のモニタで適用
     }
 }
 
-
+//分析ページ
 .analysis {
-  &__currency-chart, &__position-chart {
-      width: 50%;
-  }
+    &__currency-chart,
+    &__position-chart {
+        width: 50%;
+    }
 }

@@ -1,4 +1,5 @@
 <template>
+<!-- ログインページ -->
     <div class="login">
         <router-link to="/" tag="h1" class="form__logo"
             ><span class="form__logo--blue">FX</span>日記</router-link
@@ -74,6 +75,7 @@ export default {
     },
     data() {
         return {
+            // ログイン情報
             loginForm: {
                 email: "",
                 password: "",
@@ -83,14 +85,17 @@ export default {
         };
     },
     computed: {
+        // 通信ステータス
         apiStatus() {
             return this.$store.state.auth.apiStatus;
         },
+        // バリデーションエラー
         loginErrors() {
             return this.$store.state.auth.loginErrorMessages;
         }
     },
     methods: {
+        // ログイン処理
         async login() {
             this.loading = true;
             await this.$store.dispatch("auth/login", this.loginForm);

@@ -1,4 +1,5 @@
 <template>
+<!-- 分析ページ -->
     <div>
         <div v-if="diariesCheck">
             <div class="analysis__loading" v-if="loading">
@@ -59,19 +60,23 @@ export default {
         };
     },
     computed: {
+        // 勝率フォーマット変更
         winRate() {
             return this.data.winRate + "%";
         },
+        // 合計損益フォーマット変更
         totalProfitAndLoss() {
             return this.data.totalProfitAndLoss < 0
                 ? this.data.totalProfitAndLoss + "円"
                 : "+" + this.data.totalProfitAndLoss + "円";
         },
+        // 日記が１つ以上記入してあるかチェック
         diariesCheck() {
             return this.$store.getters["diaries/check"];
         }
     },
     methods: {
+        //API通信データ取得
         async readAnalysis() {
             const response = await axios
                 .get("/api/analysis")
@@ -91,6 +96,7 @@ export default {
         }
     },
     async created() {
+        // 日記が１つ以上あるなら通信を行う
         if (this.diariesCheck) {
             await this.readAnalysis();
         }

@@ -3,6 +3,8 @@
 Stylesheet: 600px以上のタブレットやモニタで適用
 
 ******************************************************************/
+
+//ログイン会員登録ページ
 .form {
     &__button {
         &--loading {
@@ -10,6 +12,8 @@ Stylesheet: 600px以上のタブレットやモニタで適用
         }
     }
 }
+
+//日記作成ページ
 .diary-create {
     &__title {
         font-size: 32px;
@@ -80,7 +84,7 @@ Stylesheet: 600px以上のタブレットやモニタで適用
     }
 }
 
-
+//日記検索ページ
 .search {
     margin-bottom: 30px;
     .search-form {
@@ -106,21 +110,141 @@ Stylesheet: 600px以上のタブレットやモニタで適用
             padding: 0 30px;
         }
         &__button {
-          width: 30%;
+            width: 30%;
         }
     }
 }
 
+//分析ページ
 .analysis {
-    &__currency-chart, &__position-chart {
+    &__currency-chart,
+    &__position-chart {
         width: 65%;
     }
-    &__win-rate, &__total {
+    &__win-rate,
+    &__total {
         width: 60%;
         margin-bottom: 50px;
     }
     &__content {
         font-size: 32px;
+    }
+    &__title {
+        font-size: 24px;
+    }
+}
+
+//日記共有ページ
+.share {
+    &__navbar {
+        &--item {
+            font-size: 22px;
+        }
+        .bar {
+            width: 15%;
+        }
+    }
+    &__icon {
+        font-size: 200px;
+    }
+    &__create-link {
+        width: 80px;
+        height: 80px;
+    }
+    .profile {
+        padding: 10px 8%;
+        &__img {
+            img {
+                width: 200px;
+                height: 200px;
+            }
+        }
+        &__name {
+            font-size: 22px;
+            text-align: left;
+            padding-top: 20px;
+        }
+        &__edit {
+            padding: 5px 10px;
+            margin-top: 50px;
+        }
+        .modal {
+            padding: 20px 30px;
+            &__preview {
+                img {
+                    width: 200px;
+                    height: 200px;
+                }
+            }
+            &__button {
+                margin: 20px 0 0 10px;
+                &.cancel {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
+
+.share-diary {
+    padding: 10px 15px;
+    &__user {
+        margin-bottom: 10px;
+        &--img {
+            margin-right: 20px;
+            img {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+            }
+            i {
+                font-size: 80px;
+            }
+        }
+        &--name {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        &--day {
+            font-size: 18px;
+        }
+    }
+    &__info {
+        justify-content: flex-start;
+        &--item {
+            padding: 3px 8px;
+            margin-right: 40px;
+            &:nth-child(2) {
+                width: 90px;
+            }
+            &:nth-child(3) {
+                width: 80px;
+            }
+        }
+    }
+    &__title {
+        margin-bottom: 10px;
+        font-size: 22px;
+    }
+    &__reference {
+        border: 1px solid $subColor;
+        border-radius: 7px;
+        padding: 3px 10px;
+    }
+}
+
+.diaries-posts {
+    &__form {
+        &--title {
+            font-size: 24px;
+        }
+        &--buttonarea {
+            margin-bottom: 30px;
+        }
+        &--button {
+            width: 30%;
+            margin-top: 15px;
+        }
     }
     &__title {
         font-size: 24px;

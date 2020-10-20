@@ -68,30 +68,81 @@ const routes = [
                         path: "search",
                         name: "search",
                         component: () =>
-                            import(
-                                "./pages/userpages/diary/DiarySearch.vue"
-                            )
+                            import("./pages/userpages/diary/DiarySearch.vue")
                     },
                     {
                         path: ":id",
                         name: "diaryDetail",
                         props: true,
                         component: () =>
-                            import("./pages/userpages/diary/DiaryDetail.vue"),
-                        
+                            import("./pages/userpages/diary/DiaryDetail.vue")
                     },
                     {
                         path: ":id/edit",
                         name: "edit",
                         component: () =>
                             import("./pages/userpages/diary/DiaryEditForm.vue")
-                    },
+                    }
                 ]
             },
             {
                 path: "share",
-                name: "share",
-                component: () => import("./pages/userpages/Share.vue")
+                component: () => import("./pages/userpages/share/Share.vue"),
+                children: [
+                    {
+                        path: "",
+                        name: "share",
+                        component: () =>
+                            import("./pages/userpages/share/ShareList.vue")
+                    },
+                    {
+                        path: "mypage",
+                        component: () =>
+                            import("./pages/userpages/share/mypage/MyPage.vue"),
+                        children: [
+                            {
+                                path: "",
+                                name: "mysharediaries",
+                                component: () =>
+                                    import(
+                                        "./pages/userpages/share/mypage/MyShareDiaries.vue"
+                                    )
+                            },
+                            {
+                                path: "reference",
+                                name: "reference",
+                                component: () =>
+                                    import(
+                                        "./pages/userpages/share/mypage/ReferenceDiaries.vue"
+                                    )
+                            }
+                        ]
+                    },
+                    {
+                        path: "ranking",
+                        name: "ranking",
+                        component: () =>
+                            import("./pages/userpages/share/Ranking.vue")
+                    }
+                ]
+            },
+            {
+                path: "posts",
+                name: "posts",
+                component: () =>
+                    import("./pages/userpages/share/posts/PostDiaries.vue"),
+            },
+            {
+                path: "share/:id",
+                name: "shareDiaryDetail",
+                component: () =>
+                    import("./pages/userpages/share/shareDiaryDetail.vue")
+            },
+            {
+                path: "posts/:id",
+                name: "postDiaryDetail",
+                component: () =>
+                    import("./pages/userpages/share/posts/PostDiaryDetail.vue")
             },
             {
                 path: "analysis",

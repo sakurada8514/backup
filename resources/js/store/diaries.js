@@ -16,7 +16,15 @@ const state = {
 
 const getters = {
     //日記が記入されているかチェック
-    check: state => state.diaries.length !== 0
+    check: state => state.diaries.length !== 0,
+
+    //exit済の日記取得
+    exitDiaries(state) {
+        let exitDiaries = state.diaries.filter(function(diary) {
+            return diary.result !== "entry";
+        });
+        return exitDiaries;
+    }
 };
 
 const mutations = {

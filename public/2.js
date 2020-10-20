@@ -298,6 +298,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -316,17 +317,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   computed: {
+    // 勝率フォーマット変更
     winRate: function winRate() {
       return this.data.winRate + "%";
     },
+    // 合計損益フォーマット変更
     totalProfitAndLoss: function totalProfitAndLoss() {
       return this.data.totalProfitAndLoss < 0 ? this.data.totalProfitAndLoss + "円" : "+" + this.data.totalProfitAndLoss + "円";
     },
+    // 日記が１つ以上記入してあるかチェック
     diariesCheck: function diariesCheck() {
       return this.$store.getters["diaries/check"];
     }
   },
   methods: {
+    //API通信データ取得
     readAnalysis: function readAnalysis() {
       var _this = this;
 
@@ -741,9 +746,9 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", { staticClass: "analysis__content" }, [
                     _vm._v(
-                      "\n                    " +
+                      "\n                        " +
                         _vm._s(_vm.winRate) +
-                        "\n                "
+                        "\n                    "
                     )
                   ])
                 ]),
@@ -758,9 +763,9 @@ var render = function() {
                     { staticClass: "analysis__content", class: _vm.total },
                     [
                       _vm._v(
-                        "\n                    " +
+                        "\n                        " +
                           _vm._s(_vm.totalProfitAndLoss) +
-                          "\n                "
+                          "\n                    "
                       )
                     ]
                   )

@@ -1,4 +1,5 @@
 <template>
+<!-- マイ日記記入ページ -->
     <div class="diary-create">
         <form class="diary-form" @submit.prevent="submit">
             <h1 class="diary-create__title">日記記入</h1>

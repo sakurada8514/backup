@@ -161,7 +161,9 @@ return [
         'rationale' => 'エントリー理由',
         'reflection' => '反省',
         'result' => '結果',
-        'settlement' => '決済損益'
+        'settlement' => '決済損益',
+        'img' => 'プロフィール画像',
+        'title' => 'タイトル'
 
     ],
 

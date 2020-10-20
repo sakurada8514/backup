@@ -1,4 +1,5 @@
 <template>
+<!-- システムエラーページ -->
     <div class="system-error">
         <router-link to="/" tag="h1" class="form__logo"
             ><span class="navbar__logo--blue">FX</span>日記</router-link

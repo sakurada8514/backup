@@ -1,4 +1,5 @@
 <template>
+<!-- ログインしたユーザーのみアクセスできるページ -->
     <div class="userpage">
         <div class="navbar">
             <router-link :to="{ name: 'diariesList' }" class="navbar__item"

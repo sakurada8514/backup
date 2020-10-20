@@ -1,4 +1,5 @@
 <template>
+<!-- マイ日記検索ページ -->
     <div class="search">
         <div class="search-form">
             <h1 class="search-form__title">日記検索</h1>
@@ -97,7 +98,7 @@
 </template>
 
 <script>
-import Diary from "./Diary";
+import Diary from "../../../components/Diary";
 export default {
     components: {
         Diary

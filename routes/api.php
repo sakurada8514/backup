@@ -40,4 +40,26 @@ Route::group(['middleware' => 'auth'], function () {
 
     //分析
     Route::get('/analysis', 'DiaryController@analysis')->name('analysis');
+
+    //プロフィール更新
+    Route::post('/user/update', 'UserController@update')->name('user.update');
+
+    //ログイン中のユーザーが投稿しいる日記取得
+    Route::get('/user/share', 'UserController@shareDiariesRead')->name('user.shareDiariesRead');
+    Route::get('/user/share/reference', 'UserController@referenceShareDiariesRead')->name('user.referenceShareDiariesRead');
+
+    //投稿した日記削除
+    Route::post('/share/delete/{id}', 'ShareController@delete')->name('share.delete');
+
+    //日記投稿
+    Route::post('/share', 'ShareController@create')->name('share.create');
+    Route::post('/share/{id}/reference', 'ShareController@reference')->name('share.reference');
+    Route::post('/share/{id}/unreference', 'ShareController@unreference')->name('share.unreference');
+
+    //共有日記取得
+    Route::get('/share', 'ShareController@read')->name('share.read');
+    Route::get('/share/ranking', 'ShareController@ranking')->name('share.ranking');
+
+    //共有日記詳細取得
+    Route::get('/share/{id}', 'ShareController@readDetails')->name('share.readDetails');
 });

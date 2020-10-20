@@ -1,4 +1,5 @@
 <template>
+<!-- 会員登録ページ -->
     <div class="register">
         <router-link to="/" tag="h1" class="form__logo"
             ><span class="form__logo--blue">FX</span>日記</router-link
@@ -88,7 +89,7 @@
                 ><i class="fa fa-google" aria-hidden="true"></i
                 >Googleアカウントで登録</a
             >
-            <router-link class="form__to" tag="p" to="/login"
+            <router-link class="form__to" to="/login"
                 >ログインはこちら</router-link
             >
         </div>
@@ -103,6 +104,7 @@ export default {
     },
     data() {
         return {
+            // 登録情報
             registerForm: {
                 name: "",
                 email: "",
@@ -113,23 +115,28 @@ export default {
         };
     },
     computed: {
+        // 通信ステータス
         apiStatus() {
             return this.$store.state.auth.apiStatus;
         },
+        // バリデーションエラー
         registerErrors() {
             return this.$store.state.auth.registerErrorMessages;
         }
     },
     methods: {
+        // 会員登録処理
         async register() {
             this.loading = true;
             await this.$store.dispatch("auth/register", this.registerForm);
             this.loading = false;
             if (this.apiStatus) {
+                // 登録成功で日記一覧へ移動
                 const userName = this.$store.getters["auth/userName"];
                 this.$router.push(`/${userName}/diaries/list/`);
             }
         },
+        // エラーリセット
         clearError() {
             this.$store.commit("auth/setRegisterErrorMessages", null);
         }

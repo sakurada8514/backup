@@ -1,4 +1,5 @@
 <template>
+<!-- トップページ -->
     <div class="top">
         <TopHeader></TopHeader>
     </div>

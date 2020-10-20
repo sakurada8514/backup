@@ -191,26 +191,33 @@ class DiaryController extends Controller
         return $diariesData;
     }
 
+    //分析機能
     public function analysis()
     {
+        //ログイン中ユーザーの日記取得
         $diariesData = Auth::user()->diaries()->get();
 
+        //トレード勝率計算
         $winCount = $diariesData->where('result', 'win')->count();
         $settledCount = $diariesData->where('result', '<>', 'entry')->count();
         $winRate = round($winCount / $settledCount * 100, 1);
 
+        //合計損益計算
         $totalProfitAndLoss = $diariesData->sum('settlement');
 
+        //取引通貨毎エントリー回数取得
         $currency = DB::table('diaries')->where('user_id', Auth::user()->id)
             ->select(DB::raw('count(*) as currency_count, currency'))
             ->groupBy('currency')
             ->get();
 
+        //ポジション毎エントリー回数取得
         $position = DB::table('diaries')->where('user_id', Auth::user()->id)
             ->select(DB::raw('count(*) as position_count, position'))
             ->groupBy('position')
             ->get();
 
+        //データ返却
         return [
             'winRate' => $winRate,
             'totalProfitAndLoss' => $totalProfitAndLoss,

@@ -97,6 +97,8 @@ html {
     }
 }
 
+
+
 //ログイン、会員登録フォーム
 .form {
     text-align: center;
@@ -127,13 +129,7 @@ html {
             margin: 0;
         }
         &--input {
-            width: 100%;
-            background-color: $baseColor;
-            padding: 5px;
-            border: none;
-            border: 1px solid #b3b3b3;
-            border-radius: 3px;
-            box-shadow: inner 0 0 4px rgba(0, 0, 0, 0.2);
+            @include input;
             &:focus {
                 outline: none;
                 border: 1px solid $subColor;
@@ -152,12 +148,7 @@ html {
         }
     }
     &__button {
-        width: 100%;
-        color: white;
-        border-radius: 3px;
-        border: none;
-        padding: 10px 0;
-        background-color: $subColor;
+        @include button(100%, 10px 0);
         position: relative;
         &--loading {
             position: absolute;
@@ -166,13 +157,12 @@ html {
         }
     }
     &__to {
-        cursor: pointer;
+        color: $fontColor;
         margin-top: 10px;
         font-size: 14px;
         color: #3b3b3b;
     }
 }
-
 .register,
 .login {
     padding-top: 20px;
@@ -180,7 +170,6 @@ html {
     max-width: $contentMaxWidth;
     margin: 0 auto;
 }
-
 .login {
     .form__item {
         &:nth-child(2) {
@@ -188,7 +177,6 @@ html {
         }
     }
 }
-
 .google {
     margin-top: 10px;
     display: block;
@@ -207,10 +195,14 @@ html {
     }
 }
 
+
+
 //システムエラーページ
 .system-error__msg {
     text-align: center;
 }
+
+
 
 //ユーザーページ
 .userpage {
@@ -234,9 +226,9 @@ html {
             display: block;
             text-align: center;
         }
-        .router-link-active {
-            color: $subColor;
-        }
+        // .router-link-active {
+        //     color: $subColor;
+        // }
     }
     .footer {
         text-align: center;
@@ -256,20 +248,7 @@ html {
     }
     .toDiaryCreateForm,
     .toDiarySearch {
-        position: fixed;
-        bottom: 5%;
-        right: 4%;
-        background-color: $subColor;
-        border-radius: 50%;
-        width: 70px;
-        height: 70px;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 35px;
-        box-shadow: 0 10px 25px 3px rgba(0, 0, 0, 0.15),
-            0 1px 4px 0 rgba(0, 0, 0, 0.03);
+        @include link;
         cursor: pointer;
         &:hover {
             background-color: #5289bd;
@@ -286,6 +265,8 @@ html {
         min-height: calc(100vh - 46px);
     }
 }
+
+
 
 //日記一覧ページ
 .diary {
@@ -325,7 +306,7 @@ html {
     }
     &__result {
         &.entry {
-            color: #1e1e1e;
+            color: $fontColor;
         }
         &.lose {
             color: #db2f3d;
@@ -336,39 +317,44 @@ html {
     }
 }
 
+
+
 //日記詳細ページ
 .diary-detail {
     &__content {
-        max-width: $contentMaxWidth;
-        margin: 0 auto;
-        padding: 0 0 20px;
-        width: 100%;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
-            0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        @include contents(0 0 20px);
         position: relative;
     }
     &__title {
         font-weight: 600;
         background-color: $mainColor;
         text-align: center;
-        margin-top: 20px;
         font-size: 20px;
         padding: 3px 0;
+        margin: 20px 0 20px;
     }
     &__info {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
         padding: 0 10px;
     }
     &__item {
-        width: 48%;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-bottom: 1px solid #c2c2c2;
         &--title {
             font-size: 18px;
+            &.under {
+                border-bottom: 1px solid #c2c2c2;
+            }
+        }
+        &--content {
+            font-size: 20px;
             font-weight: 600;
-            border-bottom: 1px solid #d4d4d4;
+            text-align: right;
+            &.day {
+                width: 70%;
+            }
         }
         &--text {
             width: 100%;
@@ -380,21 +366,13 @@ html {
         }
     }
     &__settlement {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
         padding: 0 10px;
     }
     &__button {
         display: block;
         margin: 0 auto;
         margin-top: 15px;
-        width: 180px;
-        color: white;
-        border-radius: 3px;
-        border: none;
-        padding: 5px 0;
-        background-color: $subColor;
+        @include button(180px, 5px 0);
     }
     &__img {
         max-width: 100%;
@@ -415,7 +393,7 @@ html {
             flex-direction: column;
             span {
                 display: inline-block;
-                background-color: #1e1e1e;
+                background-color: $fontColor;
                 border-radius: 50%;
                 width: 5px;
                 height: 5px;
@@ -441,7 +419,7 @@ html {
                 margin-right: 5px;
             }
             &:nth-child(1) {
-                color: #1e1e1e;
+                color: $fontColor;
                 border-bottom: 1px solid #b6b5b5;
                 padding: 10px 20px;
             }
@@ -482,7 +460,7 @@ html {
             padding: 5px 0;
             width: 90px;
             &:nth-child(1) {
-                border: 1px solid #1e1e1e;
+                border: 1px solid $fontColor;
                 margin-right: 10px;
                 background-color: $baseColor;
             }
@@ -496,6 +474,8 @@ html {
     }
 }
 
+
+
 //日記記入ページ
 .diary-create {
     &__title {
@@ -503,17 +483,11 @@ html {
         font-weight: 600;
         font-size: 28px;
         background-color: $mainColor;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         border-radius: 5px 5px 0 0;
     }
     .diary-form {
-        max-width: $contentMaxWidth;
-        margin: 0 auto;
-        padding: 0 0 20px;
-        width: 100%;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
-            0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        @include contents(0 0 20px);
         &__info {
             text-align: center;
             padding: 0 10px;
@@ -530,14 +504,7 @@ html {
             margin-bottom: 15px;
             text-align: left;
             &--input {
-                height: 40px;
-                width: 100%;
-                background-color: $baseColor;
-                padding: 5px;
-                border: none;
-                border: 1px solid #b3b3b3;
-                border-radius: 3px;
-                font-size: 16px;
+                @include input;
                 &:focus {
                     outline: none;
                     border: 1px solid $subColor;
@@ -600,17 +567,12 @@ html {
             display: block;
             margin: 0 auto;
             margin-top: 25px;
-            width: 50%;
-            color: white;
-            border-radius: 3px;
-            border: none;
-            padding: 5px 0;
-            background-color: $subColor;
+            @include button(50%, 5px 0);
             position: relative;
             &--loading {
                 position: absolute;
                 top: 0;
-                left: 10%;
+                left: 6%;
             }
         }
     }
@@ -646,17 +608,13 @@ html {
     }
 }
 
+
+
 //日記検索ページ
 .search {
     .search-form {
-        max-width: $contentMaxWidth;
-        margin: 0 auto;
+        @include contents(0 0 15px);
         margin-bottom: 20px;
-        width: 100%;
-        padding-bottom: 15px;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
-            0 2px 10px 0 rgba(0, 0, 0, 0.12);
         &__content {
             padding: 10px;
         }
@@ -672,14 +630,7 @@ html {
             margin-bottom: 15px;
             text-align: left;
             &--input {
-                height: 40px;
-                width: 100%;
-                background-color: $baseColor;
-                padding: 5px;
-                border: none;
-                border: 1px solid #b3b3b3;
-                border-radius: 3px;
-                font-size: 16px;
+                @include input;
                 &:focus {
                     outline: none;
                     border: 1px solid $subColor;
@@ -703,12 +654,7 @@ html {
             padding: 0 10px;
         }
         &__button {
-            width: 35%;
-            color: white;
-            border-radius: 3px;
-            border: none;
-            padding: 5px 0;
-            background-color: $subColor;
+            @include button(35%, 5px 0);
         }
     }
     &__count {
@@ -723,6 +669,9 @@ html {
     margin-top: 30px;
 }
 
+
+
+//分析ページ
 .analysis {
     &__currency-chart,
     &__position-chart {
@@ -751,7 +700,7 @@ html {
         font-size: 22px;
     }
     &__loading {
-        margin-top: 50px;
+        margin-top: 20%;
         &--text {
             text-align: center;
             margin-top: 20px;
@@ -762,5 +711,300 @@ html {
     }
     .loss {
         color: #db2f3d;
+    }
+}
+
+
+
+//日記共有ページ
+.share {
+    &__navbar {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        position: relative;
+        margin-bottom: 20px;
+        // border-bottom: 1px solid #9c9c9c;
+        &--item {
+            color: $fontColor;
+            font-size: 18px;
+            width: calc(100% / 3);
+            text-align: center;
+            border: 1px solid;
+            border-color: $baseColor $baseColor #9c9c9c;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            // border-bottom: none;
+            padding: 10px 0;
+            transition: all 0.2s;
+            &:hover {
+                color: $fontColor;
+            }
+            &.router-link-active {
+                border-color: #9c9c9c #9c9c9c $baseColor;
+            }
+        }
+    }
+    &__create-link {
+        @include link;
+        &:hover {
+            background-color: #5289bd;
+            color: white;
+        }
+    }
+}
+
+
+
+//マイページ
+.mypage {
+    .profile {
+        @include contents(10px 5%);
+        display: flex;
+        justify-content: space-around;
+        &__icon {
+            font-size: 100px;
+        }
+        &__img {
+            text-align: center;
+            img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+            }
+        }
+        &__name {
+            padding-top: 5px;
+            font-size: 20px;
+            text-align: left;
+        }
+        &__edit {
+            width: 100%;
+            color: white;
+            border-radius: 3px;
+            border: none;
+            padding: 5px;
+            background-color: $subColor;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            text-align: left;
+            &__content {
+                background-color: $baseColor;
+                z-index: 150;
+                width: 90%;
+                max-width: 600px;
+                border-radius: 5px;
+                margin: 0 auto;
+                margin-top: 40px;
+                text-align: center;
+                padding: 20px;
+                .profile__icon {
+                    font-size: 150px;
+                }
+            }
+            &__file {
+                width: 100%;
+                margin-top: 10px;
+            }
+            &__preview {
+                img {
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                }
+            }
+            &__button {
+                @include button(35%, 5px 0);
+                margin: 20px 0 0 5px;
+                &.cancel {
+                    background-color: #db2f3d;
+                    margin-right: 5px;
+                }
+            }
+            &__name {
+                text-align: left;
+                margin-top: 20px;
+                &--input {
+                    @include input;
+                    &:focus {
+                        outline: none;
+                        border: 1px solid $subColor;
+                    }
+                }
+            }
+        }
+    }
+    .mysharediaries {
+        &__nav {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            &--item {
+                color: $fontColor;
+                text-align: center;
+                padding: 10px 0;
+                border: 1px solid;
+                border-color: $baseColor $baseColor #9c9c9c;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                width: 50%;
+                transition: all 0.2s;
+                &.router-link-active {
+                    border-color: #9c9c9c #9c9c9c $baseColor;
+                }
+            }
+        }
+    }
+    &__loading {
+        margin-top: 10%;
+    }
+}
+
+
+
+.share-diary {
+    @include contents(15px 7px);
+    margin-bottom: 30px;
+    position: relative;
+    cursor: pointer;
+    &__user {
+        display: flex;
+        margin-bottom: 10px;
+        &--img {
+            margin-right: 10px;
+            img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
+            i {
+                font-size: 50px;
+            }
+        }
+        &--name {
+            font-weight: 600;
+        }
+        &--day {
+            font-weight: lighter;
+        }
+    }
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &--item {
+            border: 1px solid #3b3b3b;
+            border-radius: 7px;
+            padding: 3px;
+            &:nth-child(2) {
+                width: 72px;
+                text-align: center;
+            }
+            &:nth-child(3) {
+                width: 60px;
+                text-align: center;
+            }
+        }
+        .lose ,.short {
+            color: #db2f3d;
+            border-color: #db2f3d;
+        }
+        .win ,.long {
+            color: #4183c0;
+            border-color: #4183c0;
+        }
+    }
+    &__title {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    &__reference {
+        border: 1px solid $subColor;
+        border-radius: 7px;
+        padding: 3px 5px;
+        background-color: $baseColor;
+        i {
+            margin-right: 5px;
+        }
+        &--active {
+            background-color: $subColor;
+            color: white;
+        }
+    }
+    &__delete {
+        @include button(50px, 5px 0);
+        background-color: $baseColor;
+        border: 1px solid #db2f3d;
+        color: #db2f3d;
+        position: absolute;
+        top: 8%;
+        right: 3%;
+    }
+    &-detail__reference {
+        border: 1px solid $subColor;
+        border-radius: 7px;
+        padding: 3px 10px;
+        background-color: $baseColor;
+        margin-bottom: 20px;
+        i {
+            margin-right: 5px;
+        }
+        &--active {
+            background-color: $subColor;
+            color: white;
+        }
+    }
+}
+
+
+
+//日記公開ページ
+.diaries-posts {
+    &__form {
+        &--title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        &--label {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        &--input {
+            @include input;
+            &:focus {
+                outline: none;
+                border: 1px solid $subColor;
+            }
+        }
+        &--buttonarea {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        &--button {
+            @include button(40%, 5px 0);
+            margin-top: 20px;
+            position: relative;
+        }
+        &--loading {
+            position: absolute;
+            top: 4%;
+            left: 5%;
+        }
+    }
+    &__title {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 10px;
     }
 }

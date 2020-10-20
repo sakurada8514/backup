@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'img'
     ];
 
     /**
@@ -25,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'img',self::CREATED_AT, self::UPDATED_AT,
     ];
 
     /**
@@ -37,8 +38,34 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = [
+        'img_url'
+    ];
+
+    //日記とのリレーション
     public function diaries()
     {
         return $this->hasMany('App\Diary');
+    }
+
+    //共有日記とのリレーション
+    public function shareDiaries()
+    {
+        return $this->hasMany('App\ShareDiary');
+    }
+
+    public function references()
+    {
+        return $this->belongsToMany('App\ShareDiary', 'references', 'user_id', 'share_diaries_id')->withTimestamps();
+    }
+
+    //プロフィール画像URL取得
+    public function getImgUrlAttribute()
+    {
+        if ($this->attributes['img']) {
+            return Storage::cloud()->url($this->attributes['img']);
+        } else {
+            return null;
+        }
     }
 }

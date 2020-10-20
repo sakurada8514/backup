@@ -12,7 +12,9 @@ const state = {
     registerErrorMessages: null,
 
     //ログインエラーメッセージ
-    loginErrorMessages: null
+    loginErrorMessages: null,
+
+    profileErrorMessages: null
 };
 
 const getters = {
@@ -35,6 +37,9 @@ const mutations = {
     },
     setLoginErrorMessages(state, messages) {
         state.loginErrorMessages = messages;
+    },
+    setProfileErrorMessages(state, messages) {
+        state.profileErrorMessages = messages;
     }
 };
 
@@ -123,6 +128,27 @@ const actions = {
 
         //システムエラー
         context.commit("error/setCode", response.status, { root: true });
+    },
+    async profileUpdate(context, data) {
+        context.commit("setapiStatus", null);
+        const response = await axios
+                .post("/api/user/update", data)
+                .catch(err => err.response || err);
+
+        //通信成功したらユーザー情報
+        if (response.status === OK) {
+            context.commit("setapiStatus", true);
+            context.commit("setUser", response.data.user);
+            return;
+        }
+        context.commit("setapiStatus", false);
+
+        if (response.status === UNPROCESSABLE_ENTITY) {
+            context.commit("setProfileErrorMessages", response.data.errors);
+        } else {
+            //システムエラー
+            context.commit("error/setCode", response.status, { root: true });
+        }
     }
 };
 
