@@ -41,6 +41,11 @@ class ShareDiary extends Model
         return $this->belongsToMany('App\User', 'references', 'share_diaries_id')->withTimestamps();
     }
 
+    public function comments()
+    {
+        return $this->hasMany('App\Comment', 'share_diaries_id', 'id');
+    }
+
     public function getReferencesCountAttribute()
     {
         return $this->references->count();

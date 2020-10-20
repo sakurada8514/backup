@@ -1,5 +1,5 @@
 <template>
-<!-- 共有日記詳細ページ -->
+    <!-- 共有日記詳細ページ -->
     <div class="diary-detail">
         <div class="analysis__loading" v-if="loading">
             <vue-loading
@@ -38,7 +38,11 @@
                 }"
                 @click="submit"
             >
-                <i class="fa fa-thumbs-up" aria-hidden="true"></i
+                <i
+                    class="fa fa-thumbs-up"
+                    aria-hidden="true"
+                    :class="{ reference__active: active }"
+                ></i
                 >{{ referenceCount }}
             </button>
             <div class="diary-detail__content">
@@ -142,6 +146,66 @@
                         />
                     </div>
                 </div>
+                <div class="diary-detail__comments">
+                    <h2 class="diary-detail__comments--title">
+                        <i class="fa fa-comments" aria-hidden="true"></i
+                        >コメント
+                    </h2>
+                    <div class="diary-detail__comments--form">
+                        <input
+                            class="diary-detail__comments--input"
+                            type="text"
+                            placeholder="コメントを追加..."
+                            v-model="content"
+                        />
+                        <div v-if="errorMessages" class="form__error">
+                            <ul>
+                                <li
+                                    v-for="msg in errorMessages.content"
+                                    :key="msg"
+                                    class="form__error--msg"
+                                >
+                                    {{ msg }}
+                                </li>
+                            </ul>
+                        </div>
+                        <button
+                            class="diary-detail__comments--button"
+                            @click="addComment"
+                        >
+                            送信
+                        </button>
+                    </div>
+                    <div class="diary-detail__comments--area">
+                        <ul>
+                            <li
+                                v-for="comment in comments"
+                                :key="comment.id"
+                                class="diary-detail__comments--content"
+                            >
+                                <img
+                                    class="diary-detail__comments--img"
+                                    v-if="comment.user.img_url"
+                                    :src="comment.user.img_url"
+                                    alt=""
+                                />
+                                <i
+                                    class="fa fa-user-circle diary-detail__comments--icon"
+                                    aria-hidden="true"
+                                    v-else
+                                ></i>
+                                <div>
+                                    <p class="diary-detail__comments--user">
+                                        {{ comment.user.name }}
+                                    </p>
+                                    <p class="diary-detail__comments--text">
+                                        {{ comment.content }}
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -149,7 +213,7 @@
 
 <script>
 import { VueLoading } from "vue-loading-template";
-import { OK } from "../../../util";
+import { OK, UNPROCESSABLE_ENTITY } from "../../../util";
 export default {
     components: {
         VueLoading
@@ -157,9 +221,16 @@ export default {
     data() {
         return {
             diary: null,
+            //いいね数
             referenceCount: 0,
+            //ログイン中ユーザーがこの日記をいいねしているかどうか
             referencedByUser: false,
-            loading: true
+            loading: true,
+            //ボタンアニメーション
+            active: false,
+            comments: null,
+            content: "",
+            errorMessages: null
         };
     },
     computed: {
@@ -194,6 +265,7 @@ export default {
 
             if (response.status === OK) {
                 this.diary = response.data;
+                this.comments = response.data.comments;
                 this.referenceCount = response.data.references_count;
                 this.referencedByUser = response.data.referenced_by_user;
             } else {
@@ -222,6 +294,8 @@ export default {
                 this.referenceCount++;
                 //いいね済に変更
                 this.referencedByUser = true;
+                //ボタンアニメーション
+                this.active = true;
             } else {
                 //システムエラー
                 this.$store.commit("error/setCode", response.status);
@@ -240,6 +314,27 @@ export default {
                 this.referenceCount--;
                 //いいね未へ変更
                 this.referencedByUser = false;
+                //ボタンアニメーション
+                this.active = false;
+            } else {
+                //システムエラー
+                this.$store.commit("error/setCode", response.status);
+            }
+        },
+        async addComment() {
+            const id = Number(this.$route.params["id"]);
+            const formData = new FormData();
+            formData.append("content", this.content);
+            //API通信
+            const response = await axios
+                .post(`/api/share/${id}/comment`, formData)
+                .catch(err => err.response || err);
+
+            if (response.status === OK) {
+                this.comments.push(response.data);
+                this.content = "";
+            } else if (response.status === UNPROCESSABLE_ENTITY) {
+                this.errorMessages = response.data.errors;
             } else {
                 //システムエラー
                 this.$store.commit("error/setCode", response.status);

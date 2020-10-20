@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\ShareDiary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +50,7 @@ class ShareController extends Controller
     public function readDetails(string $id)
     {
         //日記データとユーザーデータを一緒に取得
-        $shareDiary = ShareDiary::where('id', $id)->with('diaries', 'users')->first();
+        $shareDiary = ShareDiary::where('id', $id)->with('diaries', 'users', 'comments.user')->first();
 
         return $shareDiary;
     }
@@ -88,6 +89,30 @@ class ShareController extends Controller
         $shareDiary->references()->detach(Auth::user()->id);
 
         return ['shareDiary_id' => $id];
+    }
+
+    public function addComment(Request $request, string $id)
+    {
+        
+        $request->validate([
+            'content' => 'required|max:100'
+        ]);
+
+        $shareDiary = ShareDiary::where('id', $id)->first();
+
+        $formData = [
+            'content' => $request->content,
+            'user_id' => Auth::user()->id,
+            'share_diaries_id' => $shareDiary->id
+        ];
+
+        $comment = new Comment();
+
+        $shareDiary->comments()->save($comment->fill($formData));
+
+        $newComment = Comment::where('id', $comment->id)->with('user')->first();
+
+        return $newComment;
     }
 
 }

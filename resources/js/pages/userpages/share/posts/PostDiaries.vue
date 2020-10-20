@@ -4,7 +4,7 @@
         <h1 class="diaries-posts__title">共有する日記を選択してください</h1>
         <PostDiary
             v-for="diary in diaries"
-            :key="diary.id"
+            :key="`post-${diary.id}`"
             :item="diary"
         ></PostDiary>
     </div>

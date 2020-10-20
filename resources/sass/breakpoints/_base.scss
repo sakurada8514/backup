@@ -97,8 +97,6 @@ html {
     }
 }
 
-
-
 //ログイン、会員登録フォーム
 .form {
     text-align: center;
@@ -195,14 +193,10 @@ html {
     }
 }
 
-
-
 //システムエラーページ
 .system-error__msg {
     text-align: center;
 }
-
-
 
 //ユーザーページ
 .userpage {
@@ -266,8 +260,6 @@ html {
     }
 }
 
-
-
 //日記一覧ページ
 .diary {
     cursor: pointer;
@@ -316,8 +308,6 @@ html {
         }
     }
 }
-
-
 
 //日記詳細ページ
 .diary-detail {
@@ -472,9 +462,61 @@ html {
             }
         }
     }
+    &__comments {
+        &--title {
+            font-weight: 600;
+            background-color: $mainColor;
+            text-align: center;
+            font-size: 20px;
+            padding: 3px 0;
+            margin: 20px 0 20px;
+            i {
+                margin-right: 5px;
+            }
+        }
+        &--form {
+            padding: 0 10px;
+        }
+        &--input {
+            @include input;
+            margin-bottom: 10px;
+            &:focus {
+                outline: none;
+                border: 1px solid $subColor;
+            }
+        }
+        &--button {
+            display: block;
+            @include button(30%, 5px 0);
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        &--area {
+            padding: 0 10px;
+        }
+        &--content {
+            border-top: 1px solid #b6b5b5;
+            padding: 10px 0;
+            display: flex;
+        }
+        &--text {
+            font-size: 16px;
+        }
+        &--user {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        &--img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        &--icon {
+            font-size: 50px;
+        }
+    }
 }
-
-
 
 //日記記入ページ
 .diary-create {
@@ -608,8 +650,6 @@ html {
     }
 }
 
-
-
 //日記検索ページ
 .search {
     .search-form {
@@ -669,8 +709,6 @@ html {
     margin-top: 30px;
 }
 
-
-
 //分析ページ
 .analysis {
     &__currency-chart,
@@ -714,8 +752,6 @@ html {
     }
 }
 
-
-
 //日記共有ページ
 .share {
     &__navbar {
@@ -753,8 +789,6 @@ html {
         }
     }
 }
-
-
 
 //マイページ
 .mypage {
@@ -869,8 +903,6 @@ html {
     }
 }
 
-
-
 .share-diary {
     @include contents(15px 7px);
     margin-bottom: 30px;
@@ -914,17 +946,19 @@ html {
                 text-align: center;
             }
         }
-        .lose ,.short {
+        .lose,
+        .short {
             color: #db2f3d;
             border-color: #db2f3d;
         }
-        .win ,.long {
+        .win,
+        .long {
             color: #4183c0;
             border-color: #4183c0;
         }
     }
     &__title {
-        font-size: 18px;
+        font-size: 20px;
         margin-bottom: 10px;
     }
     &__reference {
@@ -938,6 +972,10 @@ html {
         &--active {
             background-color: $subColor;
             color: white;
+        }
+        .reference__active {
+            animation: reference 1s cubic-bezier(0, 0.74, 0.14, 1.05) 0s 1
+                alternate none running;
         }
     }
     &__delete {
@@ -962,10 +1000,34 @@ html {
             background-color: $subColor;
             color: white;
         }
+        .reference__active {
+            animation: reference 1s cubic-bezier(0, 0.74, 0.14, 1.05) 0s 1
+                alternate none running;
+        }
+    }
+    @keyframes reference {
+        0%,
+        100% {
+            transform: rotate(0);
+        }
+        20% {
+            transform: rotate(-20deg);
+            transform-origin: left;
+        }
+        40% {
+            transform: rotate(8deg);
+            transform-origin: left;
+        }
+        60% {
+            transform: rotate(-10deg);
+            transform-origin: left;
+        }
+        80% {
+            transform: rotate(3deg);
+            transform-origin: left;
+        }
     }
 }
-
-
 
 //日記公開ページ
 .diaries-posts {

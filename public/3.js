@@ -130,6 +130,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -312,7 +317,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm._l(_vm.diaries, function(diary) {
-        return _c("Diary", { key: diary.id, attrs: { item: diary } })
+        return _c("Diary", { key: "my-" + diary.id, attrs: { item: diary } })
       }),
       _vm._v(" "),
       _vm.diariesStatus

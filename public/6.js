@@ -275,7 +275,10 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm._l(_vm.diaries, function(diary) {
-        return _c("PostDiary", { key: diary.id, attrs: { item: diary } })
+        return _c("PostDiary", {
+          key: "post-" + diary.id,
+          attrs: { item: diary }
+        })
       })
     ],
     2

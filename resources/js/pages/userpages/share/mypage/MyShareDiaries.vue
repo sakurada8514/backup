@@ -11,7 +11,7 @@
         </div>
         <ShareDiary
             v-for="diary in diaries"
-            :key="diary.created_at"
+            :key="`myshare-${diary.id}`"
             :item="diary"
         ></ShareDiary>
         <div v-if="itemLoading">
@@ -44,7 +44,7 @@ export default {
             //総ページ数
             lastPage: null,
             //無限スクロール読み込み可、不可
-            load: true,
+            load: false,
             //無限スクロール読み込みローディング
             itemLoading: false
         };
@@ -89,6 +89,7 @@ export default {
                 this.diaries = response.data.data;
                 this.page++;
                 this.lastPage = response.data.last_page;
+                this.load = true;
             } else {
                 //システムエラー
                 this.$store.commit("error/setCode", response.status);

@@ -62,4 +62,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     //共有日記詳細取得
     Route::get('/share/{id}', 'ShareController@readDetails')->name('share.readDetails');
+
+    Route::post('/share/{id}/comment', 'ShareController@addComment')->name('share.comment');
 });

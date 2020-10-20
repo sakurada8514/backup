@@ -510,7 +510,7 @@ export default {
         //日記更新API通信
         async submit() {
             this.loading = true;
-            let formData = new FormData();
+            const formData = new FormData();
             formData.append("currency", this.diaryEditForm.currency);
             formData.append("position", this.diaryEditForm.position);
             formData.append("lot", this.diaryEditForm.lot);

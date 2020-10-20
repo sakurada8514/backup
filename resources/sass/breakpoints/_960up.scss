@@ -137,6 +137,12 @@ Stylesheet: 960px以上のモニタで適用
             width: 50%;
         }
     }
+    &__comments {
+      &--img {
+        width: 60px;
+        height: 60px;
+      }
+    }
 }
 
 //分析ページ

@@ -1,5 +1,5 @@
 <template>
-<!-- 共有日記 -->
+    <!-- 共有日記 -->
     <router-link
         class="share-diary"
         tag="div"
@@ -42,7 +42,11 @@
                 class="share-diary__reference"
                 @click.prevent="submit"
             >
-                <i class="fa fa-thumbs-up" aria-hidden="true"></i
+                <i
+                    class="fa fa-thumbs-up"
+                    aria-hidden="true"
+                    :class="{ reference__active: active }"
+                ></i
                 >{{ referenceCount }}
             </button>
         </div>
@@ -61,7 +65,9 @@ export default {
     data() {
         return {
             referenceCount: 0,
-            referencedByUser: false
+            referencedByUser: false,
+            //ボタンアニメーション
+            active: false
         };
     },
     computed: {
@@ -107,6 +113,8 @@ export default {
                 this.referenceCount++;
                 //いいね済に変更
                 this.referencedByUser = true;
+                //ボタンアニメーション
+                this.active = true;
             } else {
                 //システムエラー
                 this.$store.commit("error/setCode", response.status);
@@ -124,6 +132,8 @@ export default {
                 this.referenceCount--;
                 //いいね未へ変更
                 this.referencedByUser = false;
+                //ボタンアニメーション
+                this.active = false;
             } else {
                 //システムエラー
                 this.$store.commit("error/setCode", response.status);
