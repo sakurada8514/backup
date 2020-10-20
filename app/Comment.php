@@ -14,6 +14,7 @@ class Comment extends Model
         'user', 'content',
     ];
 
+    //ユーザーとのリレーション
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id', 'id', 'users');

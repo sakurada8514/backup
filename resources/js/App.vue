@@ -15,6 +15,7 @@ export default {
     watch: {
         errorCode: {
             handler(val) {
+                //システムエラーが起きた場合エラーページへ移動
                 if (val === INTERNAL_SERVER_ERROR) {
                     this.$router.push("/500");
                 }

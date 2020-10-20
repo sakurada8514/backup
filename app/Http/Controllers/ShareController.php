@@ -19,6 +19,7 @@ class ShareController extends Controller
         return $shareDiaries;
     }
 
+    //いいね数が多い順で共有日記取得
     public function ranking()
     {
         //日記データとユーザーデータを一緒に取得（作成日順）無限スクロールのため10件ずつ
@@ -65,39 +66,48 @@ class ShareController extends Controller
         return ;
     }
 
+    //いいね付与
     public function reference(string $id)
     {
+        //いいね付与する日記取得
         $shareDiary = ShareDiary::where('id', $id)->with('references')->first();
 
         if(!$shareDiary){
             abort(404);
         }
 
+        //いいねが二回付与できないように解除後付与処理
         $shareDiary->references()->detach(Auth::user()->id);
         $shareDiary->references()->attach(Auth::user()->id);
 
         return ['shareDiary_id' => $id];
     }
+
+    //いいね解除
     public function unreference(string $id)
     {
+        //いいね解除する日記取得
         $shareDiary = ShareDiary::where('id', $id)->with('references')->first();
 
         if(!$shareDiary){
             abort(404);
         }
 
+        //いいね解除
         $shareDiary->references()->detach(Auth::user()->id);
 
         return ['shareDiary_id' => $id];
     }
 
+    //コメント機能
     public function addComment(Request $request, string $id)
     {
-        
+        //バリデーション
         $request->validate([
             'content' => 'required|max:100'
         ]);
 
+        //コメントをつける日記取得
         $shareDiary = ShareDiary::where('id', $id)->first();
 
         $formData = [
@@ -108,8 +118,10 @@ class ShareController extends Controller
 
         $comment = new Comment();
 
+        //保存
         $shareDiary->comments()->save($comment->fill($formData));
 
+        //ユーザー情報を取得し直す為コメント再取得
         $newComment = Comment::where('id', $comment->id)->with('user')->first();
 
         return $newComment;

@@ -18,39 +18,47 @@ class ShareDiary extends Model
         'title', 'diaries_id'
     ];
 
+    //JSONに含めるアクセサ
     protected $appends = [
         'references_count', 'referenced_by_user'
     ];
 
+    //JSONに含めない
     protected $hidden = [
         'user_id', 'diaries_id', self::UPDATED_AT, 'references'
     ];
 
+    //日記とのリレーション
     public function diaries()
     {
         return $this->hasOne('App\Diary', 'id', 'diaries_id');
     }
 
+    //ユーザーとのリレーション
     public function users()
     {
         return $this->hasOne('App\User', 'id', 'user_id');
     }
 
+    //いいねとのリレーション
     public function references()
     {
         return $this->belongsToMany('App\User', 'references', 'share_diaries_id')->withTimestamps();
     }
 
+    //コメントとのリレーション
     public function comments()
     {
         return $this->hasMany('App\Comment', 'share_diaries_id', 'id');
     }
 
+    //いいね数取得
     public function getReferencesCountAttribute()
     {
         return $this->references->count();
     }
 
+    //ログイン中ユーザーがいいねしているか判別
     public function getReferencedByUserAttribute()
     {
         return $this->references->contains(function ($user) {

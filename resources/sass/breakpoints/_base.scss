@@ -462,6 +462,7 @@ html {
             }
         }
     }
+    //コメント欄
     &__comments {
         &--title {
             font-weight: 600;
@@ -903,6 +904,7 @@ html {
     }
 }
 
+//共有日記ページ
 .share-diary {
     @include contents(15px 7px);
     margin-bottom: 30px;

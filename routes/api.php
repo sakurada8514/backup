@@ -51,17 +51,24 @@ Route::group(['middleware' => 'auth'], function () {
     //投稿した日記削除
     Route::post('/share/delete/{id}', 'ShareController@delete')->name('share.delete');
 
-    //日記投稿
+    //共有日記投稿
     Route::post('/share', 'ShareController@create')->name('share.create');
+
+    //いいね付与
     Route::post('/share/{id}/reference', 'ShareController@reference')->name('share.reference');
+
+    //いいね解除
     Route::post('/share/{id}/unreference', 'ShareController@unreference')->name('share.unreference');
 
     //共有日記取得
     Route::get('/share', 'ShareController@read')->name('share.read');
+
+    //共有日記いいね数ランキング
     Route::get('/share/ranking', 'ShareController@ranking')->name('share.ranking');
 
     //共有日記詳細取得
     Route::get('/share/{id}', 'ShareController@readDetails')->name('share.readDetails');
 
+    //コメント
     Route::post('/share/{id}/comment', 'ShareController@addComment')->name('share.comment');
 });

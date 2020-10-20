@@ -59,6 +59,7 @@ class UserController extends Controller
         return $shareDiaries;
     }
 
+    //ログイン中ユーザーがいいねしている日記取得
     public function referenceShareDiariesRead()
     {
         $user = Auth::user();

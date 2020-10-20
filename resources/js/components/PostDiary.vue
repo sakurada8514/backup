@@ -1,4 +1,5 @@
 <template>
+<!-- 共有日記投稿 -->
     <router-link
         class="diary"
         tag="div"

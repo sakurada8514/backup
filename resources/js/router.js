@@ -150,6 +150,7 @@ const routes = [
                 component: () => import("./pages/userpages/Analysis.vue")
             }
         ],
+        //ログイン中ユーザーのみアクセスできる
         beforeEnter(to, from, next) {
             if (store.getters["auth/check"]) {
                 next();
@@ -167,6 +168,7 @@ const routes = [
 const router = new VueRouter({
     mode: "history",
     routes,
+    //スクロールポジション維持
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {
             return savedPosition;

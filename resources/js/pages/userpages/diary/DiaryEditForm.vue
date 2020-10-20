@@ -370,6 +370,7 @@ export default {
     },
     data() {
         return {
+            //フォームデータ
             diaryEditForm: {
                 currency: "",
                 position: "",
@@ -385,9 +386,12 @@ export default {
                 reflection: "",
                 exit_img: ""
             },
+            //プレビュー
             entryPreview: null,
             exitPreview: null,
+            //ローディング
             loading: false,
+            //日記データ
             diary: null
         };
     },

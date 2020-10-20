@@ -93,8 +93,11 @@ export default {
                 this.diaries = response.data.data.filter(function(val) {
                     return val.references_count > 0;
                 });
+                //現在のページ数プラス
                 this.page++;
+                //総ページ数代入
                 this.lastPage = response.data.last_page;
+                //無限スクロール読み込み可にする
                 this.load = true;
             } else {
                 //システムエラー

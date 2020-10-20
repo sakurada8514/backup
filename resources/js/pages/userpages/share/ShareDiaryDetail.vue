@@ -228,7 +228,9 @@ export default {
             loading: true,
             //ボタンアニメーション
             active: false,
+            //コメントデータ
             comments: null,
+            //新規コメントデータ
             content: "",
             errorMessages: null
         };
@@ -258,11 +260,11 @@ export default {
         //日記取得
         async readDiary() {
             const id = Number(this.$route.params["id"]);
-            // console.log(id);
+            //日記詳細取得
             const response = await axios
                 .get(`/api/share/${id}`)
                 .catch(err => err.response || err);
-
+            //通信成功ならデータ代入
             if (response.status === OK) {
                 this.diary = response.data;
                 this.comments = response.data.comments;
@@ -321,18 +323,22 @@ export default {
                 this.$store.commit("error/setCode", response.status);
             }
         },
+        //コメント処理
         async addComment() {
             const id = Number(this.$route.params["id"]);
             const formData = new FormData();
             formData.append("content", this.content);
-            //API通信
+            //コメント投稿
             const response = await axios
                 .post(`/api/share/${id}/comment`, formData)
                 .catch(err => err.response || err);
 
             if (response.status === OK) {
+                //通信成功で投稿したコメントを追加する
                 this.comments.push(response.data);
+                //フォームリセット
                 this.content = "";
+            //バリデーション
             } else if (response.status === UNPROCESSABLE_ENTITY) {
                 this.errorMessages = response.data.errors;
             } else {

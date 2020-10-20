@@ -54,6 +54,7 @@ class User extends Authenticatable
         return $this->hasMany('App\ShareDiary');
     }
 
+    //いいねとのリレーション
     public function references()
     {
         return $this->belongsToMany('App\ShareDiary', 'references', 'user_id', 'share_diaries_id')->withTimestamps();

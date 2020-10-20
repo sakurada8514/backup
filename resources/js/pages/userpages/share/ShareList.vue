@@ -84,11 +84,14 @@ export default {
             const response = await axios
                 .get("/api/share?page=1")
                 .catch(err => err.response || err);
-
+            //通信成功でデータ代入
             if (response.status === OK) {
                 this.diaries = response.data.data;
+                //現在のページ数プラス
                 this.page++;
+                //総ページ数代入
                 this.lastPage = response.data.last_page;
+                //無限スクロール読み込み可にする
                 this.load = true;
             } else {
                 //システムエラー

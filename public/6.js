@@ -52,6 +52,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: {
@@ -202,7 +203,7 @@ var render = function() {
                     ? _c("span", [_vm._v("損切り")])
                     : _c("span", [_vm._v("エントリー中")]),
                   _vm._v(
-                    "\n                    " + _vm._s(_vm.item.settlement)
+                    "\n                        " + _vm._s(_vm.item.settlement)
                   ),
                   _vm.item.result !== "entry"
                     ? _c("span", [_vm._v("円")])
@@ -221,9 +222,9 @@ var render = function() {
             _vm._v(" "),
             _c("p", { staticClass: "diary__text" }, [
               _vm._v(
-                "\n                    " +
+                "\n                        " +
                   _vm._s(_vm.rationale) +
-                  "\n                "
+                  "\n                    "
               )
             ])
           ]),
@@ -233,9 +234,9 @@ var render = function() {
             _vm._v(" "),
             _c("p", [
               _vm._v(
-                "\n                    " +
+                "\n                        " +
                   _vm._s(_vm.reflection) +
-                  "\n                "
+                  "\n                    "
               )
             ])
           ])
