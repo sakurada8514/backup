@@ -213,6 +213,7 @@ html {
 
 //ログイン、会員登録フォーム
 .form {
+    background-color: $contentColor;
     text-align: center;
     width: 100%;
     max-width: 550px;
@@ -323,7 +324,7 @@ html {
         position: fixed;
         top: 0;
         width: 100%;
-        background-color: $baseColor;
+        background-color: $contentColor;
         z-index: 10;
         &__item {
             color: $fontColor;
@@ -381,6 +382,7 @@ html {
     border-radius: 5px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
         0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        background-color: $contentColor;
     &__date {
         font-size: 20px;
         font-weight: 600;
@@ -428,6 +430,7 @@ html {
     &__content {
         @include contents(0 0 20px);
         position: relative;
+        background-color: $contentColor;
     }
     &__title {
         font-weight: 600;
@@ -509,7 +512,7 @@ html {
         }
         &--content {
             border: 1px solid #b6b5b5;
-            background-color: $baseColor;
+            background-color: $contentColor;
             border-radius: 3px;
             width: 40%;
             position: absolute;
@@ -531,7 +534,7 @@ html {
                 button {
                     border: none;
                     color: #db2f3d;
-                    background-color: $baseColor;
+                    background-color: $contentColor;
                     padding: 10px 20px;
                 }
             }
@@ -546,7 +549,7 @@ html {
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 100;
         &__content {
-            background-color: $baseColor;
+            background-color: $contentColor;
             z-index: 150;
             width: 90%;
             border-radius: 5px;
@@ -566,7 +569,7 @@ html {
             &:nth-child(1) {
                 border: 1px solid $fontColor;
                 margin-right: 10px;
-                background-color: $baseColor;
+                background-color: $contentColor;
             }
             &:nth-child(2) {
                 border: 1px solid #db2f3d;
@@ -645,6 +648,7 @@ html {
     }
     .diary-form {
         @include contents(0 0 20px);
+        background-color: $contentColor;
         &__info {
             text-align: center;
             padding: 0 10px;
@@ -686,7 +690,7 @@ html {
                 width: 100%;
                 height: 100px;
                 overflow: scroll;
-                background-color: $baseColor;
+                background-color: $contentColor;
                 padding: 5px;
                 border: none;
                 border: 1px solid #b3b3b3;
@@ -770,6 +774,7 @@ html {
     .search-form {
         @include contents(0 0 15px);
         margin-bottom: 20px;
+        background-color: $contentColor;
         &__content {
             padding: 10px;
         }
@@ -911,6 +916,7 @@ html {
         @include contents(10px 5%);
         display: flex;
         justify-content: space-around;
+        background-color: $contentColor;
         &__icon {
             font-size: 100px;
         }
@@ -947,7 +953,7 @@ html {
             z-index: 100;
             text-align: left;
             &__content {
-                background-color: $baseColor;
+                background-color: $contentColor;
                 z-index: 150;
                 width: 90%;
                 max-width: 600px;
@@ -1024,6 +1030,7 @@ html {
     margin-bottom: 30px;
     position: relative;
     cursor: pointer;
+    background-color: $contentColor;
     &__user {
         display: flex;
         margin-bottom: 10px;
@@ -1081,7 +1088,7 @@ html {
         border: 1px solid $subColor;
         border-radius: 7px;
         padding: 3px 5px;
-        background-color: $baseColor;
+        background-color: $contentColor;
         i {
             margin-right: 5px;
         }
@@ -1096,7 +1103,7 @@ html {
     }
     &__delete {
         @include button(50px, 5px 0);
-        background-color: $baseColor;
+        background-color: $contentColor;
         border: 1px solid #db2f3d;
         color: #db2f3d;
         position: absolute;
@@ -1107,7 +1114,7 @@ html {
         border: 1px solid $subColor;
         border-radius: 7px;
         padding: 3px 10px;
-        background-color: $baseColor;
+        background-color: $contentColor;
         margin-bottom: 20px;
         i {
             margin-right: 5px;

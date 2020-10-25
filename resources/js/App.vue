@@ -13,6 +13,7 @@ export default {
         }
     },
     watch: {
+        //エラーコード監視
         errorCode: {
             handler(val) {
                 //システムエラーが起きた場合エラーページへ移動

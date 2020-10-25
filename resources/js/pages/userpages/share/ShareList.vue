@@ -92,7 +92,6 @@ export default {
                 //総ページ数代入
                 this.lastPage = response.data.last_page;
                 //無限スクロール読み込み可にする
-                console.log("aa");
                 this.load = true;
             } else {
                 //システムエラー

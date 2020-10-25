@@ -7,6 +7,7 @@ use App\ShareDiary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+//共有日記処理
 class ShareController extends Controller
 {
 
@@ -22,7 +23,7 @@ class ShareController extends Controller
     //いいね数が多い順で共有日記取得
     public function ranking()
     {
-        //日記データとユーザーデータを一緒に取得（作成日順）無限スクロールのため10件ずつ
+        //日記データとユーザーデータを一緒に取得（いいね数順）無限スクロールのため10件ずつ
         $shareDiaryRanking = ShareDiary::withCount('references')->with('diaries', 'users')->orderBy('references_count', 'desc')->paginate(10);
 
         return $shareDiaryRanking;
@@ -60,7 +61,7 @@ class ShareController extends Controller
     {
         $shareDiary = ShareDiary::find($id);
 
-        //日記削除
+        //共有日記削除
         $shareDiary->delete();
 
         return ;

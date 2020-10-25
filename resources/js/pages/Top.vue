@@ -16,7 +16,7 @@
                 >
             </div>
         </div>
-        <div class="about">
+        <div class="about" id="about">
             <h2 class="about__title">FX日記とは？</h2>
             <div class="about__text">
                 <p>トレード日記をつけると良いと聞くけど書き方が分からない...</p>

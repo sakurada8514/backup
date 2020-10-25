@@ -1,8 +1,10 @@
 <template>
-    <div  class="top-navbar">
+    <div class="top-navbar">
         <div class="navbar">
             <div class="navbar__logo">
-                <h1><span class="navbar__logo--blue">FX</span>日記</h1>
+                <h1 @click="scrollTop">
+                    <span class="navbar__logo--blue">FX</span>日記
+                </h1>
             </div>
             <button
                 @click="menuOpen"
@@ -18,7 +20,7 @@
             <li @click="scrollTop" class="navbar__item">
                 <p>トップ</p>
             </li>
-            <li class="navbar__item">
+            <li class="navbar__item" @click="scrollAbout">
                 <p>FX日記とは</p>
             </li>
             <li class="navbar__item">
@@ -39,11 +41,24 @@ export default {
         };
     },
     methods: {
+        //画面上部へスクロール
         scrollTop() {
-            window.scrollTo({
+            scrollTo({
                 top: 0,
                 behavior: "smooth"
             });
+            this.isMenuOpen = false;
+        },
+        //aboutへスクロール
+        scrollAbout() {
+            const el = document.querySelector(".about").getBoundingClientRect();
+            const position = el.top + pageYOffset;
+
+            scrollTo({
+                top: position,
+                behavior: "smooth"
+            });
+            this.isMenuOpen = false;
         },
         menuOpen() {
             this.isMenuOpen = !this.isMenuOpen;

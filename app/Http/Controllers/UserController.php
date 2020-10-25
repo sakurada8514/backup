@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    //ログイン中のユーザー情報と日記一覧を返却
+    //ログイン中のユーザー情報とmy日記一覧を返却
     public function userCheck()
     {
         $user = Auth::user();
@@ -50,7 +50,7 @@ class UserController extends Controller
         return ['user' => $user];
     }
 
-    //ログイン中ユーザーが投稿している日記取得　無限スクロールのため10件ずつ
+    //ログイン中ユーザーが投稿している共有日記取得　無限スクロールのため10件ずつ
     public function shareDiariesRead()
     {
         $id = Auth::user()->id;
@@ -59,7 +59,7 @@ class UserController extends Controller
         return $shareDiaries;
     }
 
-    //ログイン中ユーザーがいいねしている日記取得
+    //ログイン中ユーザーがいいねしている共有日記取得
     public function referenceShareDiariesRead()
     {
         $user = Auth::user();
