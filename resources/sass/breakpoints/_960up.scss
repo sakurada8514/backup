@@ -6,8 +6,11 @@ Stylesheet: 960px以上のモニタで適用
 
 //トップページ
 .top {
-    .header {
+    .top-navbar {
         position: relative;
+        position: fixed;
+        top: 0;
+        left: 0;
     }
     .navbar {
         &__button {
@@ -30,6 +33,25 @@ Stylesheet: 960px以上のモニタで適用
             margin: 0;
             font-weight: 600;
         }
+    }
+    .about {
+        &__content {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: stretch;
+            max-width: 1100px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+        &__item {
+          width: 32%;
+        }
+    }
+    .footer {
+      &__button {
+        width: 30%;
+        margin: 50px auto;
+      }
     }
 }
 
@@ -114,7 +136,8 @@ Stylesheet: 960px以上のモニタで適用
         font-size: 22px;
         padding: 5px 0;
     }
-    &__info, &__settlement {
+    &__info,
+    &__settlement {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -138,10 +161,10 @@ Stylesheet: 960px以上のモニタで適用
         }
     }
     &__comments {
-      &--img {
-        width: 60px;
-        height: 60px;
-      }
+        &--img {
+            width: 60px;
+            height: 60px;
+        }
     }
 }
 

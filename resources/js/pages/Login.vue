@@ -60,7 +60,7 @@
                 ><i class="fa fa-google" aria-hidden="true"></i
                 >Googleアカウントでログイン</a
             >
-            <router-link class="form__to" tag="p" to="/register"
+            <router-link class="form__to" to="/register"
                 >ユーザー登録はこちら</router-link
             >
         </div>

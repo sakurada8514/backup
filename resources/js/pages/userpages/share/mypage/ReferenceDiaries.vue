@@ -100,26 +100,25 @@ export default {
         //リセット処理
         clear() {
             this.itemLoading = false;
-            this.load = true;
+            this.load = false;
             this.page = 1;
             this.diaries = [];
         }
     },
-    mounted() {
-        //スクロール検知
-        window.onscroll = () => {
-            //ページ下部までスクロールされたら日記取得
-            let bottomOfWindow =
-                document.documentElement.scrollTop + window.innerHeight ==
-                document.documentElement.offsetHeight;
-            if (bottomOfWindow) {
-                this.getDiaries();
-            }
-        };
-    },
     async created() {
         this.clear();
         await this.readDiaries();
+        if (this.load) {
+            window.onscroll = () => {
+                //ページ下部までスクロールされたら日記取得
+                let bottomOfWindow =
+                    document.documentElement.scrollTop + window.innerHeight ==
+                    document.documentElement.offsetHeight;
+                if (bottomOfWindow) {
+                    this.getDiaries();
+                }
+            };
+        }
     }
 };
 </script>

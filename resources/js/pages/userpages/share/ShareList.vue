@@ -1,5 +1,5 @@
 <template>
-<!-- 共有日記一覧ページ -->
+    <!-- 共有日記一覧ページ -->
     <div class="share-list">
         <div class="analysis__loading" v-if="loading">
             <vue-loading
@@ -92,6 +92,7 @@ export default {
                 //総ページ数代入
                 this.lastPage = response.data.last_page;
                 //無限スクロール読み込み可にする
+                console.log("aa");
                 this.load = true;
             } else {
                 //システムエラー
@@ -103,33 +104,25 @@ export default {
         //リセット処理
         clear() {
             this.itemLoading = false;
-            this.load = true;
+            this.load = false;
             this.page = 1;
             this.diaries = [];
         }
     },
-    mounted() {
-        //スクロール検知
-        window.onscroll = () => {
-            //ページ下部までスクロールされたら日記取得
-            let bottomOfWindow =
-                document.documentElement.scrollTop + window.innerHeight ==
-                document.documentElement.offsetHeight;
-            if (bottomOfWindow) {
-                this.getDiaries();
-            }
-        };
-        // const options = {
-        //     root: document.querySelector(".observerArea"),
-        //     rootMargin: "-100px",
-        //     threshold: 0
-        // };
-        // const callback = this.getDiaries;
-        // const observer = new IntersectionObserver(callback, options);
-    },
     async created() {
         this.clear();
         await this.readDiaries();
+        if (this.load) {
+            window.onscroll = () => {
+                //ページ下部までスクロールされたら日記取得
+                let bottomOfWindow =
+                    document.documentElement.scrollTop + window.innerHeight ==
+                    document.documentElement.offsetHeight;
+                if (bottomOfWindow) {
+                    this.getDiaries();
+                }
+            };
+        }
     }
 };
 </script>

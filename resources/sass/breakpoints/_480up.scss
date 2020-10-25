@@ -3,3 +3,21 @@
 Stylesheet: 480px以上(スマホの横向き)のモニタで適用
 
 ******************************************************************/
+.top {
+    .header {
+        &__title {
+            font-size: 24px;
+        }
+    }
+    .about {
+        &__text {
+            width: 80%;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 40px;
+            p {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}

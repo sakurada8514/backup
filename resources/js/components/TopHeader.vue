@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+    <div  class="top-navbar">
         <div class="navbar">
             <div class="navbar__logo">
                 <h1><span class="navbar__logo--blue">FX</span>日記</h1>
@@ -20,9 +20,6 @@
             </li>
             <li class="navbar__item">
                 <p>FX日記とは</p>
-            </li>
-            <li class="navbar__item">
-                <p>機能紹介</p>
             </li>
             <li class="navbar__item">
                 <router-link tag="p" to="/register">会員登録</router-link>

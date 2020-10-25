@@ -20,8 +20,13 @@ html {
 
 //トップページ
 .top {
-    .header {
+    .top-navbar {
         background-color: $mainColor;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     }
     .navbar {
         display: flex;
@@ -93,6 +98,115 @@ html {
                     }
                 }
             }
+        }
+    }
+    .header {
+        background-image: url(https://fxdiary.s3-ap-northeast-1.amazonaws.com/fxdiary/marketing-4596067_1920-min.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        text-align: center;
+        padding: 260px 0 200px;
+        width: 100%;
+        &__title {
+            color: white;
+            font-size: 22px;
+            text-shadow: 2px  2px 5px rgb(31, 31, 31),
+            -2px  2px 5px rgb(31, 31, 31),
+             2px -2px 5px rgb(31, 31, 31),
+            -2px -2px 5px rgb(31, 31, 31);
+            margin-bottom: 10px;
+            span {
+                color: #db2f3d;
+            }
+        }
+        &__logo {
+            color: white;
+            font-size: 32px;
+            text-shadow: 2px  2px 5px rgb(31, 31, 31),
+            -2px  2px 5px rgb(31, 31, 31),
+             2px -2px 5px rgb(31, 31, 31),
+            -2px -2px 5px rgb(31, 31, 31);
+            margin-bottom: 20px;
+            span {
+                color: $subColor;
+            }
+        }
+        &__button {
+            display: inline-block;
+            @include button(100px, 5px 0);
+            font-size: 16px;
+            &:nth-child(1) {
+                background-color: #db2f3d;
+                margin-right: 10px;
+            }
+            &:nth-child(2) {
+                margin-left: 10px;
+            }
+        }
+    }
+    .about {
+        background-color: $baseColor;
+        padding-top: 100px;
+        &__title {
+            text-align: center;
+            width: 160px;
+            margin: 0 auto;
+            border-bottom: 2px solid $mainColor;
+        }
+        &__text {
+            width: 95%;
+            margin: 0 auto;
+            margin-top: 30px;
+            p {
+                margin-bottom: 5px;
+            }
+            span {
+                font-weight: 600;
+            }
+        }
+        &__content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 10px;
+            margin-top: 30px;
+        }
+        &__item {
+            background-color: #e4e4e4;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 10px 15px;
+            width: 100%;
+            &--icon {
+                font-size: 80px;
+                display: flex;
+                justify-content: center;
+                margin: 20px 0;
+            }
+            &--title {
+                text-align: center;
+                color: $subColor;
+                font-size: 24px;
+            }
+            &--text {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    .footer {
+        text-align: center;
+        background-color: $mainColor;
+        width: 100%;
+        padding: 15px;
+        &__text {
+            font-size: 10px;
+        }
+        &__button {
+            @include button(50%, 5px 0);
+            background-color: #db2f3d;
+            display: block;
+            margin: 20px auto;
         }
     }
 }

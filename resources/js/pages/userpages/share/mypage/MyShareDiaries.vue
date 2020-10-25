@@ -1,5 +1,5 @@
 <template>
-<!-- ログイン中ユーザーが投稿した日記一覧ページ -->
+    <!-- ログイン中ユーザーが投稿した日記一覧ページ -->
     <div class="share-list">
         <div class="mypage__loading" v-if="loading">
             <vue-loading
@@ -105,21 +105,20 @@ export default {
             this.diaries = [];
         }
     },
-    mounted() {
-        //スクロール検知
-        window.onscroll = () => {
-            //ページ下部までスクロールされたら日記取得
-            let bottomOfWindow =
-                document.documentElement.scrollTop + window.innerHeight ==
-                document.documentElement.offsetHeight;
-            if (bottomOfWindow) {
-                this.getDiaries();
-            }
-        }
-    },
     async created() {
         this.clear();
         await this.readDiaries();
+        if (this.load) {
+            window.onscroll = () => {
+                //ページ下部までスクロールされたら日記取得
+                let bottomOfWindow =
+                    document.documentElement.scrollTop + window.innerHeight ==
+                    document.documentElement.offsetHeight;
+                if (bottomOfWindow) {
+                    this.getDiaries();
+                }
+            };
+        }
     }
 };
 </script>
