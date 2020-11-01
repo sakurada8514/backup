@@ -14,7 +14,11 @@ class AddTitleToShareDiariesTable extends Migration
     public function up()
     {
         Schema::table('share_diaries', function (Blueprint $table) {
-            $table->string('title');
+            $table->string('title')->nullable();
+        });
+
+        Schema::table('share_diaries', function (Blueprint $table) {
+            $table->string('title')->nullable(false)->change();
         });
     }
 
