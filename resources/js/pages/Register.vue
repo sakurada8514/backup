@@ -109,7 +109,8 @@ export default {
                 name: "",
                 email: "",
                 password: "",
-                password_confirmation: ""
+                password_confirmation: "",
+                img: ''
             },
             loading: false
         };
