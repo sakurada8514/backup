@@ -136,7 +136,7 @@ const routes = [
                 path: "share/:id",
                 name: "shareDiaryDetail",
                 component: () =>
-                    import("./pages/userpages/share/shareDiaryDetail.vue")
+                    import("./pages/userpages/share/ShareDiaryDetail.vue")
             },
             {
                 path: "posts/:id",
