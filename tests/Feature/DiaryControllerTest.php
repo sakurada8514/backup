@@ -42,6 +42,7 @@ class DiaryControllerTest extends TestCase
             ->json('POST', route('diaries.create'), $data);
 
         $response->assertStatus(200);
+        $this->assertDatabaseHas('diaries', ['entry_at' => $data['entry_at'], 'entry_rate' => $data['entry_rate']]);
     }
 
     /**
@@ -67,6 +68,7 @@ class DiaryControllerTest extends TestCase
             ->json('POST', route('diaries.create'), $data);
 
         $response->assertStatus(200);
+        $this->assertDatabaseHas('diaries', ['exit_at' => $data['exit_at'], 'exit_rate' => $data['exit_rate']]);
     }
 
     /**
@@ -112,7 +114,7 @@ class DiaryControllerTest extends TestCase
         Storage::fake('s3');
 
         $data = [
-            'currency' => 'EUR/JPY',
+            'currency' => 'EUR/USD',
             'entry_at' => date("Y-m-d H:i:s"),
             'entry_rate' => rand(),
             'position' => 'short',
@@ -131,6 +133,7 @@ class DiaryControllerTest extends TestCase
             ->json('POST', route('diaries.update', [$diary->id]), $data);
 
         $response->assertStatus(200);
+        $this->assertDatabaseHas('diaries', ['entry_at' => $data['entry_at'], 'entry_rate' => $data['entry_rate']]);
     }
 
     /**
@@ -145,6 +148,6 @@ class DiaryControllerTest extends TestCase
             ->json('POST', route('diaries.delete', [$diary->id]));
 
         $response->assertStatus(200);
-
+        $this->assertDatabaseMissing('diaries', ['id' => $diary->id]);
     }
 }
