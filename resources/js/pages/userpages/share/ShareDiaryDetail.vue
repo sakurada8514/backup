@@ -10,6 +10,23 @@
             <p class="analysis__loading--text">Now Loading...</p>
         </div>
         <div v-else>
+            <div v-show="modalOpen" class="modal">
+                <div class="modal__content">
+                    <p>共有した日記を削除してもよろしいですか？</p>
+                    <p>※元のMY日記は削除されません</p>
+                    <div class="modal__select">
+                        <button
+                            class="modal__button"
+                            @click="modalOpen = false"
+                        >
+                            キャンセル
+                        </button>
+                        <button class="modal__button" @click="destroy">
+                            削除
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div class="share-diary__user">
                 <div class="share-diary__user--img">
                     <img
@@ -44,6 +61,13 @@
                     :class="{ reference__active: active }"
                 ></i
                 >{{ referenceCount }}
+            </button>
+            <button
+                class="share-diary__delete"
+                @click="modalOpen = true"
+                v-if="loginUserId === postUserId"
+            >
+                削除
             </button>
             <div class="diary-detail__content">
                 <h1 class="diary-create__title">日記詳細</h1>
@@ -152,29 +176,31 @@
                         >コメント
                     </h2>
                     <div class="diary-detail__comments--form">
-                        <input
-                            class="diary-detail__comments--input"
-                            type="text"
-                            placeholder="コメントを追加..."
-                            v-model="content"
-                        />
-                        <div v-if="errorMessages" class="form__error">
-                            <ul>
-                                <li
-                                    v-for="msg in errorMessages.content"
-                                    :key="msg"
-                                    class="form__error--msg"
-                                >
-                                    {{ msg }}
-                                </li>
-                            </ul>
-                        </div>
-                        <button
-                            class="diary-detail__comments--button"
-                            @click="addComment"
-                        >
-                            送信
-                        </button>
+                        <form @submit.prevent="addComment">
+                            <input
+                                class="diary-detail__comments--input"
+                                type="text"
+                                placeholder="コメントを追加..."
+                                v-model="content"
+                            />
+                            <div v-if="errorMessages" class="form__error">
+                                <ul>
+                                    <li
+                                        v-for="msg in errorMessages.content"
+                                        :key="msg"
+                                        class="form__error--msg"
+                                    >
+                                        {{ msg }}
+                                    </li>
+                                </ul>
+                            </div>
+                            <button
+                                class="diary-detail__comments--button"
+                                type="submit"
+                            >
+                                送信
+                            </button>
+                        </form>
                     </div>
                     <div class="diary-detail__comments--area">
                         <ul>
@@ -232,7 +258,13 @@ export default {
             comments: null,
             //新規コメントデータ
             content: "",
-            errorMessages: null
+            //エラーメッセージ
+            errorMessages: null,
+            //共有日記を投稿したユーザーID
+            postUserId: null,
+            //ログイン中のユーザーID
+            loginUserId: null,
+            modalOpen: false
         };
     },
     computed: {
@@ -270,12 +302,28 @@ export default {
                 this.comments = response.data.comments;
                 this.referenceCount = response.data.references_count;
                 this.referencedByUser = response.data.referenced_by_user;
+                this.postUserId = response.data.users.id;
+                this.loginUserId = this.$store.getters["auth/userId"];
             } else {
                 //システムエラー
                 this.$store.commit("error/setCode", response.status);
             }
 
             this.loading = false;
+        },
+        //削除処理
+        async destroy() {
+            const id = Number(this.$route.params["id"]);
+            const response = await axios
+                .post(`/api/share/delete/${id}`)
+                .catch(err => err.response || err);
+            if (response.status === OK) {
+                const userName = this.$store.getters["auth/userName"];
+                this.$router.push(`/${userName}/diaries/share`);
+            } else {
+                //システムエラー
+                this.$store.commit("error/setCode", response.status);
+            }
         },
         //ログイン中ユーザーがいいね済ならいいね解除処理、いいねしていないならいいね付与処理
         async submit() {
@@ -338,7 +386,7 @@ export default {
                 this.comments.push(response.data);
                 //フォームリセット
                 this.content = "";
-            //バリデーション
+                //バリデーション
             } else if (response.status === UNPROCESSABLE_ENTITY) {
                 this.errorMessages = response.data.errors;
             } else {
