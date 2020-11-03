@@ -56,7 +56,7 @@
                     >ログイン
                 </button>
             </form>
-            <a class="google" href="http://localhost:8000/login/google"
+            <a class="google" href="http://fx-diary.net/login/google"
                 ><i class="fa fa-google" aria-hidden="true"></i
                 >Googleアカウントでログイン</a
             >
@@ -107,7 +107,7 @@ export default {
         },
         //ページ移動ごとにエラーリセット
         clearError() {
-            this.$store.commit("auth/setRegisterErrorMessages", null);
+            this.$store.commit("auth/setLoginErrorMessages", null);
         }
     },
     created() {

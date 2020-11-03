@@ -85,7 +85,7 @@
                     >ユーザー登録
                 </button>
             </form>
-            <a class="google" href="http://localhost:8000/login/google"
+            <a class="google" href="http://fx-diary.net/login/google"
                 ><i class="fa fa-google" aria-hidden="true"></i
                 >Googleアカウントで登録</a
             >

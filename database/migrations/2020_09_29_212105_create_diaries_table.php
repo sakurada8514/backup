@@ -17,7 +17,7 @@ class CreateDiariesTable extends Migration
     {
         Schema::create('diaries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('currency',);
             $table->string('entry_img')->nullable();
             $table->string('exit_img')->nullable();
