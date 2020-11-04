@@ -22,7 +22,10 @@ const getters = {
     check: state => !!state.user,
 
     //ユーザーの名前
-    userName: state => (state.user ? state.user.name : "")
+    userName: state => (state.user ? state.user.name : ""),
+
+    //ユーザーID
+    userId: state => (state.user ? state.user.id : "")
 };
 
 const mutations = {

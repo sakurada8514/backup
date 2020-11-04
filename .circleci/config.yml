@@ -15,7 +15,7 @@ jobs:
       - run:
           name: php test
           command: vendor/bin/phpunit
-          no_output_timout: 1h
+          no_output_timout: 100m
 
   deploy:
     docker:

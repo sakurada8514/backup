@@ -1106,9 +1106,8 @@ html {
         background-color: $contentColor;
         border: 1px solid #db2f3d;
         color: #db2f3d;
-        position: absolute;
-        top: 8%;
-        right: 3%;
+        display: block;
+        float: right;
     }
     &-detail__reference {
         border: 1px solid $subColor;
