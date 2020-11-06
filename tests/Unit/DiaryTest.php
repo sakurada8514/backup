@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Diary;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -18,9 +19,13 @@ class DiaryTest extends TestCase
      */
     public function testFactoryable()
     {
+        $userEloquent = app(User::class);
         $eloquent = app(Diary::class);
         $this->assertEmpty($eloquent->get()); 
-        $entity = factory(Diary::class)->create(); 
+        $user = factory(User::class)->create();
+        $entity = factory(Diary::class)->create([
+            'user_id' => $user->id
+        ]); 
         $this->assertNotEmpty($eloquent->get());
     }
 }

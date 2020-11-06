@@ -33,7 +33,7 @@ class UserTest extends TestCase
      */
     public function UserHasManyDiaries()
     {
-        $count = 5;
+        $count = 2;
         $userEloquent = app(User::class);
         $diaryEloquent = app(Diary::class);
         $user = factory(User::class)->create();
@@ -49,7 +49,7 @@ class UserTest extends TestCase
      */
     public function UserHasManyShareDiaries()
     {
-        $count = 5;
+        $count = 2;
         $userEloquent = app(User::class);
         $sharediaryEloquent = app(ShareDiary::class);
         $user = factory(User::class)->create();
