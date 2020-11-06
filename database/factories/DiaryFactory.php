@@ -7,9 +7,7 @@ use App\User;
 use Faker\Generator as Faker;
 
 $factory->define(Diary::class, function (Faker $faker) {
-    $user = factory(User::class)->create();
     return [
-        'user_id' => $user->id,
         'currency' => $faker->randomElement(['EUR/USD', 'USD/JPY']),
         'entry_img' => $faker->image(),
         'exit_img' => $faker->image(),

@@ -10,10 +10,11 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use Illuminate\Support\Str;
+use Tests\Concerns\RefreshDatabaseLite;
 
 class DiaryControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabaseLite;
 
     public function setUp(): void
     {
@@ -109,7 +110,9 @@ class DiaryControllerTest extends TestCase
      */
     public function should_日記を編集できる()
     {
-        $diary = factory(Diary::class)->create();
+        $diary = factory(Diary::class)->create([
+            'user_id' => $this->user->id
+        ]);
 
         Storage::fake('s3');
 
@@ -142,7 +145,9 @@ class DiaryControllerTest extends TestCase
     public function should_日記を削除できる()
     {
         Storage::fake('s3');
-        $diary = factory(Diary::class)->create();
+        $diary = factory(Diary::class)->create([
+            'user_id' => $this->user->id
+        ]);
 
         $response = $this->actingAs($this->user)
             ->json('POST', route('diaries.delete', [$diary->id]));

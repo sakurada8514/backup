@@ -38,8 +38,10 @@ class CommentTest extends TestCase
         $shareDiaryEloquent = app(ShareDiary::class);
         $diaryEloquent = app(Diary::class);
         $commentEloquent = app(Comment::class);
+        $user = factory(User::class)->create();
         $diary = factory(Diary::class)->create([
-        ]);
+            'user_id' => $user->id
+        ]); 
         $shareDiary = factory(ShareDiary::class)->create([
             'user_id' => $diary->user_id,
             'diaries_id' => $diary->id,
