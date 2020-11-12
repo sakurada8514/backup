@@ -71,7 +71,7 @@ export default {
             const dateJp = date.replace("-", "年").replace("-", "月") + "日 ";
             const time = dateTime[1].slice(0, 5);
             const dayData = date.split("-");
-            const day = new Date(dayData[0], dayData[1], dayData[2]);
+            const day = new Date(dayData[0], (dayData[1]-1), dayData[2]);
             const weekJp = ["日", "月", "火", "水", "木", "金", "土"];
             const dayJp = weekJp[day.getDay()];
             const entryDay = dateJp + time + " " + dayJp;
