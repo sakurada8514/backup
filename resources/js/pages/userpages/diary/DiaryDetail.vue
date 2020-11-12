@@ -81,7 +81,7 @@
                 </div>
                 <div class="diary-detail__item--text">
                     <p class="diary-detail__item--title under">理由</p>
-                    <p>{{ diary.rationale }}</p>
+                    <p class="detail-text">{{ diary.rationale }}</p>
                 </div>
                 <div class="diary-detail__item--img" v-if="diary.entry_img_url">
                     <p class="diary-detail__item--title under">写真</p>
@@ -104,7 +104,7 @@
                 </div>
                 <div class="diary-detail__item--text">
                     <p class="diary-detail__item--title under">反省</p>
-                    <p>{{ diary.reflection }}</p>
+                    <p class="detail-text">{{ diary.reflection }}</p>
                 </div>
                 <div class="diary-detail__item--img" v-if="diary.exit_img_url">
                     <p class="diary-detail__item--title under">写真</p>
@@ -185,7 +185,7 @@ export default {
             const dateJp = date.replace("-", "年").replace("-", "月") + "日 ";
             const time = dateTime[1].slice(0, 5);
             const dayData = date.split("-");
-            const day = new Date(dayData[0], dayData[1], dayData[2]);
+            const day = new Date(dayData[0], (dayData[1]-1), dayData[2]);
             const weekJp = ["日", "月", "火", "水", "木", "金", "土"];
             const dayJp = weekJp[day.getDay()];
             const result = dateJp +  time + " " + dayJp;
