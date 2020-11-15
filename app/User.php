@@ -57,7 +57,7 @@ class User extends Authenticatable
     //いいねとのリレーション
     public function references()
     {
-        return $this->belongsToMany('App\ShareDiary', 'references', 'user_id', 'share_diaries_id')->withTimestamps();
+        return $this->belongsToMany('App\ShareDiary', 'references', 'user_id', 'share_diary_id')->withTimestamps();
     }
 
     //プロフィール画像URL取得

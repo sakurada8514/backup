@@ -84,7 +84,6 @@
                     <p class="detail-text">{{ diary.rationale }}</p>
                 </div>
                 <div class="diary-detail__item--img" v-if="diary.entry_img_url">
-                    <p class="diary-detail__item--title under">写真</p>
                     <img
                         class="diary-detail__img"
                         :src="diary.entry_img_url"
@@ -107,7 +106,6 @@
                     <p class="detail-text">{{ diary.reflection }}</p>
                 </div>
                 <div class="diary-detail__item--img" v-if="diary.exit_img_url">
-                    <p class="diary-detail__item--title under">写真</p>
                     <img
                         class="diary-detail__img"
                         :src="diary.exit_img_url"

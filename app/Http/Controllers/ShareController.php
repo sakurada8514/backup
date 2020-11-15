@@ -35,12 +35,12 @@ class ShareController extends Controller
         //日記タイトルと日記IDを保存
         $request->validate([
             'title' => 'required|max:50',
-            'id' => 'required|unique:share_diaries,diaries_id|numeric'
+            'id' => 'required|unique:share_diaries,diary_id|numeric'
         ]);
 
         $formData = [
             'title' => $request->title,
-            'diaries_id' => $request->id,
+            'diary_id' => $request->id,
         ];
 
         Auth::user()->shareDiaries()->save($shareDiary->fill($formData));
@@ -114,7 +114,7 @@ class ShareController extends Controller
         $formData = [
             'content' => $request->content,
             'user_id' => Auth::user()->id,
-            'share_diaries_id' => $shareDiary->id
+            'share_diary_id' => $shareDiary->id
         ];
 
         $comment = new Comment();

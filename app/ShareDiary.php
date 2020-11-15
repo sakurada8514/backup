@@ -15,7 +15,7 @@ class ShareDiary extends Model
     protected $table = 'share_diaries';
 
     protected $fillable = [
-        'title', 'diaries_id'
+        'title', 'diary_id'
     ];
 
     //JSONに含めるアクセサ
@@ -25,13 +25,13 @@ class ShareDiary extends Model
 
     //JSONに含めない
     protected $hidden = [
-        'user_id', 'diaries_id', self::UPDATED_AT, 'references'
+        'user_id', 'diary_id', self::UPDATED_AT, 'references'
     ];
 
     //日記とのリレーション
     public function diaries()
     {
-        return $this->hasOne('App\Diary', 'id', 'diaries_id');
+        return $this->hasOne('App\Diary', 'id', 'diary_id');
     }
 
     //ユーザーとのリレーション
@@ -43,13 +43,13 @@ class ShareDiary extends Model
     //いいねとのリレーション
     public function references()
     {
-        return $this->belongsToMany('App\User', 'references', 'share_diaries_id')->withTimestamps();
+        return $this->belongsToMany('App\User', 'references', 'share_diary_id')->withTimestamps();
     }
 
     //コメントとのリレーション
     public function comments()
     {
-        return $this->hasMany('App\Comment', 'share_diaries_id', 'id');
+        return $this->hasMany('App\Comment', 'share_diary_id', 'id');
     }
 
     //いいね数取得
