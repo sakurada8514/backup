@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(ShareDiary::class, function (Faker $faker) {
     return [
         'title' => $faker->text,
-        'diaries_id' => $faker->randomDigit
+        'diary_id' => $faker->randomDigit
     ];
 });

@@ -24,7 +24,7 @@ class CommentTest extends TestCase
         $eloquent = app(Comment::class);
         $this->assertEmpty($eloquent->get()); 
         $entity = factory(Comment::class)->create([
-            'share_diaries_id' => 1
+            'share_diary_id' => 1
         ]); 
         $this->assertNotEmpty($eloquent->get());
     }
@@ -44,11 +44,11 @@ class CommentTest extends TestCase
         ]); 
         $shareDiary = factory(ShareDiary::class)->create([
             'user_id' => $diary->user_id,
-            'diaries_id' => $diary->id,
+            'diary_id' => $diary->id,
         ]); 
         $comment = factory(Comment::class)->create([
             'user_id' => $shareDiary->user_id,
-            'share_diaries_id' => $shareDiary->id
+            'share_diary_id' => $shareDiary->id
         ]);
         $this->assertNotEmpty($comment->refresh()->user);
     }

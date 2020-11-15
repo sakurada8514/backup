@@ -15,11 +15,11 @@ class CreateShareDiariesTable extends Migration
     {
         Schema::create('share_diaries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('diaries_id');
+            $table->unsignedBigInteger('diary_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->foreign('diaries_id')->references('id')->on('diaries')->onDelete('cascade');;
+            $table->foreign('diary_id')->references('id')->on('diaries')->onDelete('cascade');;
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

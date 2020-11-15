@@ -15,11 +15,11 @@ class CreateReferencesTable extends Migration
     {
         Schema::create('references', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('share_diaries_id');
+            $table->unsignedBigInteger('share_diary_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->foreign('share_diaries_id')->references('id')->on('share_diaries')->onDelete('cascade');;
+            $table->foreign('share_diary_id')->references('id')->on('share_diaries')->onDelete('cascade');;
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

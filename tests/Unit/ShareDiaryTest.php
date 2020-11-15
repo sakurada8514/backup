@@ -43,7 +43,7 @@ class ShareDiaryTest extends TestCase
         ]); 
         $shareDiary = factory(ShareDiary::class)->create([
             'user_id' => $diary->user_id,
-            'diaries_id' => $diary->id,
+            'diary_id' => $diary->id,
         ]); 
         $this->assertNotEmpty($shareDiary->refresh()->users);
         $this->assertNotEmpty($shareDiary->refresh()->diaries);
