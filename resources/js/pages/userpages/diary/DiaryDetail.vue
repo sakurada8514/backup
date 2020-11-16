@@ -164,6 +164,7 @@ export default {
         async destroy() {
             const id = Number(this.$route.params["id"]);
             await this.$store.dispatch("diaries/delete", id);
+            
             if (this.apiStatus) {
                 const userName = this.$store.getters["auth/userName"];
                 this.$router.push(`/${userName}/diaries/list/`);

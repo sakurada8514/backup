@@ -56,6 +56,7 @@ export default {
         return {
             data: null,
             loading: true,
+            //合計損益によりスタイル操作
             total: "profit"
         };
     },
@@ -84,6 +85,7 @@ export default {
 
             if (response.status === OK) {
                 this.data = response.data;
+                //合計損益がマイナスならloss代入
                 if (this.data.totalProfitAndLoss < 0) {
                     this.total = "loss";
                 }

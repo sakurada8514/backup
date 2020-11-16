@@ -11,8 +11,8 @@
         <div class="share-diary__user">
             <div class="share-diary__user--img">
                 <img
-                    v-if="item.users.img_url"
-                    :src="item.users.img_url"
+                    v-if="item.user.img_url"
+                    :src="item.user.img_url"
                     alt=""
                 />
                 <i
@@ -22,17 +22,17 @@
                 ></i>
             </div>
             <div class="share-diary__user--info">
-                <p class="share-diary__user--name">{{ item.users.name }}</p>
+                <p class="share-diary__user--name">{{ item.user.name }}</p>
                 <p class="share-diary__user--day">{{ createdDay }}</p>
             </div>
         </div>
         <div class="share-diary__title">{{ item.title }}</div>
         <div class="share-diary__info">
-            <p class="share-diary__info--item">{{ item.diaries.currency }}</p>
+            <p class="share-diary__info--item">{{ item.diary.currency }}</p>
             <p class="share-diary__info--item" :class="position">
-                {{ item.diaries.position }}
+                {{ item.diary.position }}
             </p>
-            <p class="share-diary__info--item" :class="item.diaries.result">
+            <p class="share-diary__info--item" :class="item.diary.result">
                 {{ result }}
             </p>
             <button
@@ -40,7 +40,7 @@
                     'share-diary__reference--active': referencedByUser
                 }"
                 class="share-diary__reference"
-                @click.prevent="submit"
+                @click.prevent="referenceSubmit"
             >
                 <i
                     class="fa fa-thumbs-up"
@@ -64,7 +64,9 @@ export default {
     },
     data() {
         return {
+            //いいね数
             referenceCount: 0,
+            //ログイン中ユーザーがいいね済かどうか
             referencedByUser: false,
             //ボタンアニメーション
             active: false
@@ -86,16 +88,16 @@ export default {
         },
         //resultフォーマット変更
         result() {
-            return this.item.diaries.result === "win" ? "利確" : "損切り";
+            return this.item.diary.result === "win" ? "利確" : "損切り";
         },
         //positopnフォーマット変更
         position() {
-            return this.item.diaries.position === "ロング" ? "long" : "short";
+            return this.item.diary.position === "ロング" ? "long" : "short";
         }
     },
     methods: {
         //ログイン中ユーザーがいいね済ならいいね解除処理、いいねしていないならいいね付与処理
-        async submit() {
+        async referenceSubmit() {
             const id = this.item.id;
             this.referencedByUser
                 ? await this.unReference(id)
@@ -103,16 +105,17 @@ export default {
         },
         //いいね付与処理
         async reference(id) {
-            //API通信
             const response = await axios
                 .post(`/api/share/${id}/reference`)
                 .catch(err => err.response || err);
 
             if (response.status === OK) {
-                //通信成功でカウントに1プラス
+                //通信成功でいいね数に1プラス
                 this.referenceCount++;
+
                 //いいね済に変更
                 this.referencedByUser = true;
+
                 //ボタンアニメーション
                 this.active = true;
             } else {
@@ -122,16 +125,17 @@ export default {
         },
         //いいね解除処理
         async unReference(id) {
-            //API通信
             const response = await axios
                 .post(`/api/share/${id}/unreference`)
                 .catch(err => err.response || err);
 
             if (response.status === OK) {
-                //通信成功でカウント1マイナス
+                //通信成功でいいね数1マイナス
                 this.referenceCount--;
+
                 //いいね未へ変更
                 this.referencedByUser = false;
+
                 //ボタンアニメーション
                 this.active = false;
             } else {
@@ -141,6 +145,7 @@ export default {
         }
     },
     created() {
+        //いいね情報セット
         this.referenceCount = this.item.references_count;
         this.referencedByUser = this.item.referenced_by_user;
     }

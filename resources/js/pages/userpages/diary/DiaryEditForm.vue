@@ -1,7 +1,7 @@
 <template>
-<!-- マイ日記編集ページ -->
+    <!-- マイ日記編集ページ -->
     <div class="diary-create">
-        <form class="diary-form" @submit.prevent="submit">
+        <form class="diary-form" @submit.prevent="diaryUpdate">
             <h1 class="diary-create__title">日記編集</h1>
             <div class="diary-form__info">
                 <div class="diary-form__item">
@@ -487,12 +487,10 @@ export default {
                 //もしマイナスなら符号反転
                 if (this.diary.settlement < 0) {
                     return -this.diary.settlement;
-                } else {
-                    return this.diary.settlement;
                 }
-            } else {
-                return "";
+                return this.diary.settlement;
             }
+            return "";
         },
         //初期値設定
         substitution() {
@@ -512,7 +510,7 @@ export default {
             this.exitPreview = this.diary.exit_img_url || null;
         },
         //日記更新API通信
-        async submit() {
+        async diaryUpdate() {
             this.loading = true;
             const formData = new FormData();
             formData.append("currency", this.diaryEditForm.currency);
@@ -534,7 +532,9 @@ export default {
                 data: formData,
                 id: id
             });
+
             this.loading = false;
+            
             //通信成功で一覧へ戻る
             if (this.apiStatus) {
                 const userName = this.$store.getters["auth/userName"];

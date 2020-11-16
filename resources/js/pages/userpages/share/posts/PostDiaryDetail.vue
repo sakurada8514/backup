@@ -116,7 +116,7 @@
 </template>
 
 <script>
-import { CREATED, UNPROCESSABLE_ENTITY } from "../../../../util";
+import { OK, UNPROCESSABLE_ENTITY } from "../../../../util";
 import { VueLoading } from "vue-loading-template";
 export default {
     components: {
@@ -186,7 +186,7 @@ export default {
                 .catch(err => err.response || err);
 
             //通信成功したら共有日記一覧へ移動
-            if (response.status === CREATED) {
+            if (response.status === OK) {
                 const userName = this.$store.getters["auth/userName"];
                 this.$router.push({
                     name: "share",

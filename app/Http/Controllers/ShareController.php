@@ -15,7 +15,7 @@ class ShareController extends Controller
     public function read()
     {
         //日記データとユーザーデータを一緒に取得（作成日順）無限スクロールのため10件ずつ
-        $shareDiaries = ShareDiary::with('diaries', 'users')->orderBy(ShareDiary::CREATED_AT, 'desc')->paginate(10);
+        $shareDiaries = ShareDiary::with('diary', 'user')->orderBy(ShareDiary::CREATED_AT, 'desc')->paginate(10);
 
         return $shareDiaries;
     }
@@ -24,7 +24,7 @@ class ShareController extends Controller
     public function ranking()
     {
         //日記データとユーザーデータを一緒に取得（いいね数順）無限スクロールのため10件ずつ
-        $shareDiaryRanking = ShareDiary::withCount('references')->with('diaries', 'users')->orderBy('references_count', 'desc')->paginate(10);
+        $shareDiaryRanking = ShareDiary::withCount('references')->with('diary', 'user')->orderBy('references_count', 'desc')->paginate(10);
 
         return $shareDiaryRanking;
     }
@@ -45,14 +45,14 @@ class ShareController extends Controller
 
         Auth::user()->shareDiaries()->save($shareDiary->fill($formData));
 
-        return $shareDiary;
+        return;
     }
 
     //共有日記詳細
     public function readDetails(string $id)
     {
         //日記データとユーザーデータを一緒に取得
-        $shareDiary = ShareDiary::where('id', $id)->with('diaries', 'users', 'comments.user')->first();
+        $shareDiary = ShareDiary::where('id', $id)->with('diary', 'user', 'comments.user')->first();
 
         return $shareDiary;
     }
@@ -64,7 +64,7 @@ class ShareController extends Controller
         //共有日記削除
         $shareDiary->delete();
 
-        return ;
+        return;
     }
 
     //いいね付与
