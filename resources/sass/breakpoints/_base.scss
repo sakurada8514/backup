@@ -911,7 +911,7 @@ html {
 }
 
 //マイページ
-.mypage {
+.my-page {
     .profile {
         @include contents(10px 5%);
         display: flex;
@@ -998,7 +998,7 @@ html {
             }
         }
     }
-    .mysharediaries {
+    .my-sharediaries {
         &__nav {
             display: flex;
             justify-content: space-around;
@@ -1151,7 +1151,7 @@ html {
     }
 }
 
-//日記公開ページ
+//共有日記投稿ページ
 .diaries-posts {
     &__form {
         &--title {

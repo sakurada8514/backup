@@ -17,7 +17,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'img'
+        'name',
+        'email',
+        'password',
+        'img'
     ];
 
     /**
@@ -26,7 +29,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'img',self::CREATED_AT, self::UPDATED_AT, 'email', 'email_verified_at' ,
+        'email',
+        'email_verified_at',
+        'password',
+        'remember_token',
+        'img',
+        self::CREATED_AT,
+        self::UPDATED_AT,
     ];
 
     /**
@@ -65,8 +74,8 @@ class User extends Authenticatable
     {
         if ($this->attributes['img']) {
             return Storage::cloud()->url($this->attributes['img']);
-        } else {
-            return null;
         }
+
+        return null;
     }
 }

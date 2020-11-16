@@ -75,7 +75,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    //会員登録後ユーザー情報と日記一覧を返す
+    //会員登録後ユーザー情報とMY日記一覧を返す
     protected function registered(Request $request, $user)
     {
         $diaries = $user->diaries()->orderByDesc('entry_at')->get();

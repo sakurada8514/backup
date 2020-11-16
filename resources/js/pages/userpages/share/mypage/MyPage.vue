@@ -1,6 +1,6 @@
 <template>
 <!-- ユーザーページ -->
-    <div class="mypage">
+    <div class="my-page">
         <div class="profile">
             <div class="modal" v-show="profileEditShow">
                 <div class="modal__content">
@@ -46,7 +46,7 @@
                     <button class="modal__button cancel" @click="cancel">
                         キャンセル
                     </button>
-                    <button class="modal__button" @click="update">
+                    <button class="modal__button" @click="profileUpdate">
                         保存
                     </button>
                 </div>
@@ -66,21 +66,21 @@
                 </button>
             </div>
         </div>
-        <div class="mysharediaries">
-            <div class="mysharediaries__nav">
+        <div class="my-sharediaries">
+            <div class="my-sharediaries__nav">
                 <router-link
-                    class="mysharediaries__nav--item"
+                    class="my-sharediaries__nav--item"
                     :to="{ name: 'mysharediaries' }"
                     exact
                     >公開した日記</router-link
                 >
                 <router-link
-                    class="mysharediaries__nav--item"
+                    class="my-sharediaries__nav--item"
                     :to="{ name: 'reference' }"
                     >参考にした日記</router-link
                 >
             </div>
-            <div class="mysharediaries__content">
+            <div class="my-sharediaries__content">
                 <router-view></router-view>
             </div>
         </div>
@@ -136,7 +136,7 @@ export default {
             this.$el.querySelector(".modal__file").value = null;
         },
         //プロフィール編集
-        async update() {
+        async profileUpdate() {
             let formData = new FormData();
             formData.append("img", this.profileImg);
             formData.append("name", this.profileName);

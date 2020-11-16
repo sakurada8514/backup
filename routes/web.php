@@ -13,7 +13,10 @@
 
 //googleアカウントログイン
 Route::prefix('login')->name('login.')->group(function () {
+    //googleページリダイレクト
     Route::get('/google', 'Auth\LoginController@redirectToGoogle')->name('google');
+
+    //googleAPIからのコールバック処理
     Route::get('/google/callback', 'Auth\LoginController@handleGoogleCallback')->name('google.callback');
 });
 
