@@ -51,15 +51,19 @@ class LoginController extends Controller
     //googleアカウント会員登録、ログイン処理
     public function handleGoogleCallback()
     {
+        //googleアカウントユーザー情報を取得
         $googleUser = Socialite::driver('google')->stateless()->user();
 
+        //ユーザー取得
         $user = User::firstOrNew(['email'=>$googleUser->getEmail()]);
 
+        //すでに登録済ならログイン処理
         if ($user->exists) {
             $this->guard()->login($user, true);
             return redirect()->route('top');
         }
         
+        //新規ユーザーなら会員登録
         $user->name = $googleUser->getNickname() ?? $googleUser->getName() ?? $googleUser->getNick();
         $user->email = $googleUser->email;
         $user->save();
@@ -67,7 +71,7 @@ class LoginController extends Controller
         return redirect()->route('top');
     }
 
-    //ログイン後ユーザー情報と日記一覧を返す
+    //ログイン後ユーザー情報とMY日記一覧を返す
     protected function authenticated(Request $request, $user)
     {
         $diaries = $user->diaries()->orderByDesc('entry_at')->get();

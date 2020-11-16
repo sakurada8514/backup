@@ -35,7 +35,6 @@ export default {
     },
     data() {
         return {
-            //日記データ
             diaries: null,
             //初期読み込みローディング
             loading: true,
@@ -52,7 +51,7 @@ export default {
     methods: {
         //無限スクロール日記データ代入
         async getDiaries() {
-            //読み込み
+            //無限スクロール読み込み可、不可
             if (this.load) {
                 //読み込み中は読み込めないようにする
                 if (!this.itemLoading) {
@@ -85,7 +84,7 @@ export default {
         //初期ページ読み込み
         async readDiaries() {
             const response = await axios
-                .get("/api/share/ranking?page=1")
+                .get("/api/share/ranking")
                 .catch(err => err.response || err);
 
             if (response.status === OK) {
@@ -117,6 +116,7 @@ export default {
     async created() {
         this.clear();
         await this.readDiaries();
+        
         if (this.load) {
             window.onscroll = () => {
                 //ページ下部までスクロールされたら日記取得

@@ -30,8 +30,8 @@
             <div class="share-diary__user">
                 <div class="share-diary__user--img">
                     <img
-                        v-if="diary.users.img_url"
-                        :src="diary.users.img_url"
+                        v-if="diary.user.img_url"
+                        :src="diary.user.img_url"
                         alt=""
                     />
                     <i
@@ -42,7 +42,7 @@
                 </div>
                 <div class="share-diary__user--info">
                     <p class="share-diary__user--name">
-                        {{ diary.users.name }}
+                        {{ diary.user.name }}
                     </p>
                     <p class="share-diary__user--day">{{ createdDay }}</p>
                 </div>
@@ -75,36 +75,36 @@
                     <div class="diary-detail__item">
                         <p class="diary-detail__item--title">取引通貨</p>
                         <p class="diary-detail__item--content">
-                            {{ diary.diaries.currency }}
+                            {{ diary.diary.currency }}
                         </p>
                     </div>
                     <div class="diary-detail__item">
                         <p class="diary-detail__item--title">ロット数</p>
                         <p class="diary-detail__item--content">
-                            {{ diary.diaries.lot }}
+                            {{ diary.diary.lot }}
                         </p>
                     </div>
                     <div class="diary-detail__item">
                         <p class="diary-detail__item--title">エントリー方向</p>
                         <p class="diary-detail__item--content">
-                            {{ diary.diaries.position }}
+                            {{ diary.diary.position }}
                         </p>
                     </div>
                     <div class="diary-detail__item">
                         <p class="diary-detail__item--title">結果</p>
                         <p
                             class="diary__result  diary-detail__item--content"
-                            :class="diary.diaries.result"
+                            :class="diary.diary.result"
                         >
-                            <span v-if="diary.diaries.result === 'win'"
+                            <span v-if="diary.diary.result === 'win'"
                                 >利確</span
                             >
-                            <span v-else-if="diary.diaries.result === 'lose'"
+                            <span v-else-if="diary.diary.result === 'lose'"
                                 >損切り</span
                             >
                             <span v-else>エントリー中</span>
-                            {{ diary.diaries.settlement
-                            }}<span v-if="diary.diaries.result !== 'entry'"
+                            {{ diary.diary.settlement
+                            }}<span v-if="diary.diary.result !== 'entry'"
                                 >円</span
                             >
                         </p>
@@ -115,7 +115,7 @@
                     <div class="diary-detail__item">
                         <p class="diary-detail__item--title">レート</p>
                         <p class="diary-detail__item--content">
-                            {{ diary.diaries.entry_rate }}
+                            {{ diary.diary.entry_rate }}
                         </p>
                     </div>
                     <div class="diary-detail__item">
@@ -126,16 +126,16 @@
                     </div>
                     <div class="diary-detail__item--text">
                         <p class="diary-detail__item--title under">理由</p>
-                        <p class="detail-text">{{ diary.diaries.rationale }}</p>
+                        <p class="detail-text">{{ diary.diary.rationale }}</p>
                     </div>
                     <div
                         class="diary-detail__item--img"
-                        v-if="diary.diaries.entry_img_url"
+                        v-if="diary.diary.entry_img_url"
                     >
                         <p class="diary-detail__item--title under">写真</p>
                         <img
                             class="diary-detail__img"
-                            :src="diary.diaries.entry_img_url"
+                            :src="diary.diary.entry_img_url"
                             alt=""
                         />
                     </div>
@@ -145,7 +145,7 @@
                     <div class="diary-detail__item">
                         <p class="diary-detail__item--title">レート</p>
                         <p class="diary-detail__item--content">
-                            {{ diary.diaries.exit_rate }}
+                            {{ diary.diary.exit_rate }}
                         </p>
                     </div>
                     <div class="diary-detail__item">
@@ -156,16 +156,16 @@
                     </div>
                     <div class="diary-detail__item--text">
                         <p class="diary-detail__item--title under">反省</p>
-                        <p class="detail-text">{{ diary.diaries.reflection }}</p>
+                        <p class="detail-text">{{ diary.diary.reflection }}</p>
                     </div>
                     <div
                         class="diary-detail__item--img"
-                        v-if="diary.diaries.exit_img_url"
+                        v-if="diary.diary.exit_img_url"
                     >
                         <p class="diary-detail__item--title under">写真</p>
                         <img
                             class="diary-detail__img"
-                            :src="diary.diaries.exit_img_url"
+                            :src="diary.diary.exit_img_url"
                             alt=""
                         />
                     </div>
@@ -270,12 +270,12 @@ export default {
     computed: {
         //エントリー日時日本語化
         entryDay() {
-            const entryDay = this.diary.diaries.entry_at;
+            const entryDay = this.diary.diary.entry_at;
             return this.chengeJp(entryDay);
         },
         //エグジット日時日本語化
         exitDay() {
-            const exitDay = this.diary.diaries.exit_at;
+            const exitDay = this.diary.diary.exit_at;
             return this.chengeJp(exitDay);
         },
         //日時日本語化処理
@@ -302,7 +302,7 @@ export default {
                 this.comments = response.data.comments;
                 this.referenceCount = response.data.references_count;
                 this.referencedByUser = response.data.referenced_by_user;
-                this.postUserId = response.data.users.id;
+                this.postUserId = response.data.user.id;
                 this.loginUserId = this.$store.getters["auth/userId"];
             } else {
                 //システムエラー
@@ -334,7 +334,7 @@ export default {
         //いいね付与処理
         async reference() {
             const id = Number(this.$route.params["id"]);
-            //API通信
+
             const response = await axios
                 .post(`/api/share/${id}/reference`)
                 .catch(err => err.response || err);
@@ -354,7 +354,7 @@ export default {
         //いいね解除処理
         async unReference() {
             const id = Number(this.$route.params["id"]);
-            //API通信
+
             const response = await axios
                 .post(`/api/share/${id}/unreference`)
                 .catch(err => err.response || err);

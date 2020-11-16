@@ -29,13 +29,13 @@ class ShareDiary extends Model
     ];
 
     //日記とのリレーション
-    public function diaries()
+    public function diary()
     {
         return $this->hasOne('App\Diary', 'id', 'diary_id');
     }
 
     //ユーザーとのリレーション
-    public function users()
+    public function user()
     {
         return $this->hasOne('App\User', 'id', 'user_id');
     }
