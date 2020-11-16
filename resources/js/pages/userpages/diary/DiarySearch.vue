@@ -105,13 +105,16 @@ export default {
     },
     data() {
         return {
+            //検索条件
             searchForm: {
                 currency: "",
                 position: "",
                 result: "",
                 entry_at: ""
             },
+            //日記一覧
             diariesData: [],
+            //検索結果
             filterResult: [],
             show: false
         };

@@ -27,48 +27,57 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 //ログイン中のユーザー情報
 Route::get('/user', 'UserController@userCheck')->name('user');
 
+
 //認証が必要
 Route::group(['middleware' => 'auth'], function () {
-    //日記作成
-    Route::post('/diaries', 'DiaryController@create')->name('diaries.create');
+    Route::group(['prefix' => 'diaries', 'as' => 'diaries.'], function () {
+        //日記作成
+        Route::post('/', 'DiaryController@create')->name('create');
 
-    //日記編集
-    Route::post('/diaries/{id}', 'DiaryController@update')->name('diaries.update');
+        //日記編集
+        Route::post('{id}', 'DiaryController@update')->name('update');
 
-    //日記削除
-    Route::post('/diaries/{id}/delete', 'DiaryController@delete')->name('diaries.delete');
+        //日記削除
+        Route::post('{id}/delete', 'DiaryController@delete')->name('delete');
+    });
 
     //分析
     Route::get('/analysis', 'DiaryController@analysis')->name('analysis');
 
-    //プロフィール更新
-    Route::post('/user/update', 'UserController@update')->name('user.update');
+    Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+        //プロフィール更新
+        Route::post('update', 'UserController@profileUpdate')->name('profileUpdate');
 
-    //ログイン中のユーザーが投稿しいる日記取得
-    Route::get('/user/share', 'UserController@shareDiariesRead')->name('user.shareDiariesRead');
-    Route::get('/user/share/reference', 'UserController@referenceShareDiariesRead')->name('user.referenceShareDiariesRead');
+        //ログイン中のユーザーが投稿している共有日記取得
+        Route::get('share', 'UserController@shareDiariesRead')->name('shareDiariesRead');
 
-    //投稿した日記削除
-    Route::post('/share/delete/{id}', 'ShareController@delete')->name('share.delete');
+        //ログイン中のユーザーがいいねした共有日記取得
+        Route::get('share/reference', 'UserController@referenceShareDiariesRead')->name('referenceShareDiariesRead');
+    });
 
-    //共有日記投稿
-    Route::post('/share', 'ShareController@create')->name('share.create');
+    Route::group(['prefix' => 'share', 'as' => 'share.'], function () {
+        //共有日記投稿
+        Route::post('/', 'ShareController@create')->name('create');
 
-    //いいね付与
-    Route::post('/share/{id}/reference', 'ShareController@reference')->name('share.reference');
+        //共有日記取得
+        Route::get('/', 'ShareController@read')->name('read');
 
-    //いいね解除
-    Route::post('/share/{id}/unreference', 'ShareController@unreference')->name('share.unreference');
+        //共有日記いいね数ランキング
+        Route::get('ranking', 'ShareController@ranking')->name('ranking');
+        
+        //投稿した日記削除
+        Route::post('delete/{id}', 'ShareController@delete')->name('delete');
+        
+        //いいね付与
+        Route::post('{id}/reference', 'ShareController@reference')->name('reference');
+        
+        //いいね解除
+        Route::post('{id}/unreference', 'ShareController@unreference')->name('unreference');
+        
+        //コメント
+        Route::post('{id}/comment', 'ShareController@addComment')->name('comment');
 
-    //共有日記取得
-    Route::get('/share', 'ShareController@read')->name('share.read');
-
-    //共有日記いいね数ランキング
-    Route::get('/share/ranking', 'ShareController@ranking')->name('share.ranking');
-
-    //共有日記詳細取得
-    Route::get('/share/{id}', 'ShareController@readDetails')->name('share.readDetails');
-
-    //コメント
-    Route::post('/share/{id}/comment', 'ShareController@addComment')->name('share.comment');
+        //共有日記詳細取得
+        Route::get('{id}', 'ShareController@readDetails')->name('readDetails');
+    });
 });

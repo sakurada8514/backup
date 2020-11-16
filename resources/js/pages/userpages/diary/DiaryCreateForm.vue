@@ -1,7 +1,7 @@
 <template>
 <!-- マイ日記記入ページ -->
     <div class="diary-create">
-        <form class="diary-form" @submit.prevent="submit">
+        <form class="diary-form" @submit.prevent="diaryCreate">
             <h1 class="diary-create__title">日記記入</h1>
             <div class="diary-form__info">
                 <div class="diary-form__item">
@@ -355,7 +355,6 @@
                 </div>
             </div>
             <button class="diary-form__button" type="submit">
-                <!-- API通信中のみローディング表示 -->
                 <vue-loading
                 type="bubbles"
                 color="#fff"
@@ -481,7 +480,7 @@ export default {
             this.$el.querySelector(".exit-file").value = null;
         },
         //日記作成処理
-        async submit() {
+        async diaryCreate() {
             this.loading = true;
             //フォームデータへセット
             let formData = new FormData();
@@ -498,9 +497,11 @@ export default {
             formData.append("exit_at", this.diaryCreateForm.exit_at);
             formData.append("reflection", this.diaryCreateForm.reflection);
             formData.append("exit_img", this.diaryCreateForm.exit_img);
-            //API通信
+
             await this.$store.dispatch("diaries/create", formData);
+
             this.loading = false;
+
             //API通信が成功したら日記一覧へ移動
             if (this.apiStatus) {
                 const userName = this.$store.getters["auth/userName"];

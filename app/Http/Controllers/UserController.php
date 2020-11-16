@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    //ログイン中のユーザー情報とmy日記一覧を返却
+    //ログイン中のユーザー情報とMY日記一覧を返却
     public function userCheck()
     {
         $user = Auth::user();
+
         if ($user) {
             $diaries = $user->diaries()->orderByDesc('entry_at')->get();
         } else {
@@ -24,7 +25,7 @@ class UserController extends Controller
     }
 
     //プロフィール変更処理
-    public function update(Request $request)
+    public function profileUpdate(Request $request)
     {
         $request->validate([
             'img' => 'required|image|max:500',
@@ -54,7 +55,7 @@ class UserController extends Controller
     public function shareDiariesRead()
     {
         $id = Auth::user()->id;
-        $shareDiaries = ShareDiary::where('user_id', $id)->with('diaries', 'users')->orderBy(ShareDiary::CREATED_AT, 'desc')->paginate(10);
+        $shareDiaries = ShareDiary::where('user_id', $id)->with('diary', 'user')->orderBy(ShareDiary::CREATED_AT, 'desc')->paginate(10);
 
         return $shareDiaries;
     }
@@ -64,7 +65,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        $referenceShareDiaries = $user->references()->with('diaries', 'users')->orderBy(ShareDiary::CREATED_AT, 'desc')->paginate(10);
+        $referenceShareDiaries = $user->references()->with('diary', 'user')->orderBy(ShareDiary::CREATED_AT, 'desc')->paginate(10);
 
         return $referenceShareDiaries;
     }

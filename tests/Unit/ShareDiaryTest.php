@@ -45,7 +45,7 @@ class ShareDiaryTest extends TestCase
             'user_id' => $diary->user_id,
             'diary_id' => $diary->id,
         ]); 
-        $this->assertNotEmpty($shareDiary->refresh()->users);
-        $this->assertNotEmpty($shareDiary->refresh()->diaries);
+        $this->assertNotEmpty($shareDiary->refresh()->user);
+        $this->assertNotEmpty($shareDiary->refresh()->diary);
     }
 }

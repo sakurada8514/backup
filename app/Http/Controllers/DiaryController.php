@@ -189,6 +189,7 @@ class DiaryController extends Controller
 
         //ログイン中のユーザーの日記一覧を取得（エントリー日時順）し返却
         $diariesData = Auth::user()->diaries()->orderByDesc('entry_at')->get();
+        
         return $diariesData;
     }
 
@@ -218,7 +219,6 @@ class DiaryController extends Controller
             ->groupBy('position')
             ->get();
 
-        //データ返却
         return [
             'winRate' => $winRate,
             'totalProfitAndLoss' => $totalProfitAndLoss,

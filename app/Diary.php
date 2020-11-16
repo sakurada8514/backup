@@ -24,29 +24,33 @@ class Diary extends Model
     ];
 
     protected $appends = [
-        'entry_img_url', 'exit_img_url'
+        'entry_img_url',
+        'exit_img_url'
     ];
 
     protected $hidden = [
-        'user_id', 'entry_img', 'exit_img',
-        self::CREATED_AT, self::UPDATED_AT,
+        'user_id',
+        'entry_img',
+        'exit_img',
+        self::CREATED_AT,
+        self::UPDATED_AT,
     ];
 
     //awss3に保存された画像のURL取得
     public function getEntryImgUrlAttribute()
     {
-        if($this->attributes['entry_img']) {
+        if ($this->attributes['entry_img']) {
             return Storage::cloud()->url($this->attributes['entry_img']);
-        }else {
-            return null;
         }
+
+        return null;
     }
     public function getExitImgUrlAttribute()
     {
-        if($this->attributes['exit_img']) {
+        if ($this->attributes['exit_img']) {
             return Storage::cloud()->url($this->attributes['exit_img']);
-        }else {
-            return null;
         }
+
+        return null;
     }
 }

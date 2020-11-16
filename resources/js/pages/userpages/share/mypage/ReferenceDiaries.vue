@@ -52,15 +52,16 @@ export default {
     methods: {
         //無限スクロール日記データ代入
         async getDiaries() {
-            //読み込み
+            //無限スクロール読み込み可、不可
             if (this.load) {
                 //読み込み中は読み込めないようにする
                 if (!this.itemLoading) {
                     this.itemLoading = true;
-                    //API通信
+
                     const response = await axios
                         .get("/api/user/share/reference?page=" + this.page)
                         .catch(err => err.response || err);
+
                     if (response.status === OK) {
                         //日記データ代入
                         this.diaries = this.diaries.concat(response.data.data);
@@ -88,6 +89,7 @@ export default {
             if (response.status === OK) {
                 this.diaries = response.data.data;
                 this.page++;
+                //総ページ数代入
                 this.lastPage = response.data.last_page;
                 this.load = true;
             } else {
@@ -108,6 +110,8 @@ export default {
     async created() {
         this.clear();
         await this.readDiaries();
+
+        //スクロール位置検知
         if (this.load) {
             window.onscroll = () => {
                 //ページ下部までスクロールされたら日記取得
