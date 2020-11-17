@@ -18,8 +18,8 @@ FXトレーダーの為の日記アプリです。
 ### https://fx-diary.net/  
 
 サンプルアカウント<br>
-メールアドレス：sanple@sanple.com<br>
-パスワード：sanple1234<br>
+メールアドレス：sample@sample.com<br>
+パスワード：sample1234<br>
 
 ## 使用技術
 ### フロントエンド
