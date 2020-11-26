@@ -84,6 +84,15 @@ Stylesheet: 600px以上のタブレットやモニタで適用
     }
 }
 
+//日記一覧ページ
+.diary-list {
+    &__nav {
+        &--item {
+            font-size: 20px;
+        }
+    }
+}
+
 //日記検索ページ
 .search {
     margin-bottom: 30px;
@@ -138,7 +147,7 @@ Stylesheet: 600px以上のタブレットやモニタで適用
 .share {
     &__navbar {
         &--item {
-            font-size: 22px;
+            font-size: 20px;
         }
         .bar {
             width: 15%;
@@ -234,6 +243,16 @@ Stylesheet: 600px以上のタブレットやモニタで適用
     }
 }
 
+//マイページ
+.my-page {
+    .my-sharediaries {
+        &__nav {
+            &--item {
+                font-size: 20px;
+            }
+        }
+    }
+}
 //共有日記投稿ページ
 .diaries-posts {
     &__form {

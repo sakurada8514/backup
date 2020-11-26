@@ -44,14 +44,14 @@ Stylesheet: 960px以上のモニタで適用
             margin-top: 40px;
         }
         &__item {
-          width: 32%;
+            width: 32%;
         }
     }
     .footer {
-      &__button {
-        width: 30%;
-        margin: 50px auto;
-      }
+        &__button {
+            width: 30%;
+            margin: 50px auto;
+        }
     }
 }
 
@@ -164,6 +164,23 @@ Stylesheet: 960px以上のモニタで適用
         &--img {
             width: 60px;
             height: 60px;
+        }
+    }
+}
+
+//カレンダー
+.calender {
+    &__header {
+        font-size: 24px;
+        padding: 10px 100px;
+    }
+    &__panel {
+        height: 80px;
+        font-size: 22px;
+        &--filled {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
         }
     }
 }

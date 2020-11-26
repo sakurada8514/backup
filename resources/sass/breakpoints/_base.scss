@@ -110,10 +110,9 @@ html {
         &__title {
             color: white;
             font-size: 22px;
-            text-shadow: 2px  2px 5px rgb(31, 31, 31),
-            -2px  2px 5px rgb(31, 31, 31),
-             2px -2px 5px rgb(31, 31, 31),
-            -2px -2px 5px rgb(31, 31, 31);
+            text-shadow: 2px 2px 5px rgb(31, 31, 31),
+                -2px 2px 5px rgb(31, 31, 31), 2px -2px 5px rgb(31, 31, 31),
+                -2px -2px 5px rgb(31, 31, 31);
             margin-bottom: 10px;
             span {
                 color: #db2f3d;
@@ -122,10 +121,9 @@ html {
         &__logo {
             color: white;
             font-size: 32px;
-            text-shadow: 2px  2px 5px rgb(31, 31, 31),
-            -2px  2px 5px rgb(31, 31, 31),
-             2px -2px 5px rgb(31, 31, 31),
-            -2px -2px 5px rgb(31, 31, 31);
+            text-shadow: 2px 2px 5px rgb(31, 31, 31),
+                -2px 2px 5px rgb(31, 31, 31), 2px -2px 5px rgb(31, 31, 31),
+                -2px -2px 5px rgb(31, 31, 31);
             margin-bottom: 20px;
             span {
                 color: $subColor;
@@ -382,7 +380,7 @@ html {
     border-radius: 5px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
         0 2px 10px 0 rgba(0, 0, 0, 0.12);
-        background-color: $contentColor;
+    background-color: $contentColor;
     &__date {
         font-size: 20px;
         font-weight: 600;
@@ -421,6 +419,91 @@ html {
         }
         &.win {
             color: #4183c0;
+        }
+    }
+}
+
+//カレンダー
+.calender {
+    &__content {
+        @include contents(0);
+        margin-bottom: 30px;
+    }
+    &__header {
+        display: flex;
+        justify-content: space-around;
+        font-size: 20px;
+        padding: 5px 50px;
+        border-radius: 5px 5px 0 0;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+    &__arrow {
+        cursor: pointer;
+    }
+    &__body {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &__panel {
+        width: calc(100% / 7);
+        text-align: center;
+        height: 60px;
+        cursor: pointer;
+        &--selected {
+            background-color: #dddddd;
+            border-radius: 5px;
+        }
+        &--filled {
+            background-color: $mainColor;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin: 0 auto;
+            line-height: 30px;
+        }
+        &:nth-child(7),
+        &:nth-child(14),
+        &:nth-child(21),
+        &:nth-child(28),
+        &:nth-child(35) {
+            .calender__panel--date {
+                color: #2533f7;
+            }
+        }
+        &:nth-child(1),
+        &:nth-child(8),
+        &:nth-child(15),
+        &:nth-child(22),
+        &:nth-child(29),
+        &:nth-child(36) {
+            .calender__panel--date {
+                color: #f72525;
+            }
+        }
+    }
+}
+
+//日記一覧ページ
+.diary-list {
+    &__nav {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+        &--item {
+            font-size: 18px;
+            color: $fontColor;
+            text-align: center;
+            padding: 10px 0;
+            border: 1px solid;
+            border-color: $baseColor $baseColor #9c9c9c;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            width: 50%;
+            transition: all 0.2s;
+            &.router-link-active {
+                border-color: #9c9c9c #9c9c9c $baseColor;
+            }
         }
     }
 }
@@ -703,6 +786,10 @@ html {
             }
             &--radio {
                 margin-left: 10px;
+                cursor: pointer;
+            }
+            &--radio-label {
+                cursor: pointer;
             }
             &--code {
                 width: 20px;
@@ -806,6 +893,10 @@ html {
             }
             &--radio {
                 margin-left: 10px;
+                cursor: pointer;
+            }
+            &--radio-label {
+                cursor: pointer;
             }
         }
         &__buttonarea {

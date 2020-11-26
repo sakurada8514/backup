@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import moment from "moment";
 import { OK } from "../util";
 export default {
     props: {
@@ -79,12 +80,11 @@ export default {
         },
         //日時日本語化処理
         createdDay() {
-            const dateTime = this.item.created_at.split(" ");
-            const date = dateTime[0];
-            const dateJp = date.replace("-", "年").replace("-", "月") + "日 ";
-            const time = dateTime[1].slice(0, 5);
-            const createdDay = dateJp + time;
-            return createdDay;
+            moment.locale("ja");
+            const date = moment(this.item.entry_at).format(
+                "YYYY年MM月DD日 HH:mm"
+            );
+            return date;
         },
         //resultフォーマット変更
         result() {
