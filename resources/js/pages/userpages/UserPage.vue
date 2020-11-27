@@ -1,9 +1,12 @@
 <template>
-<!-- ログインしたユーザーのみアクセスできるページ -->
+    <!-- ログインしたユーザーのみアクセスできるページ -->
     <div class="userpage">
         <div class="navbar">
             <router-link :to="{ name: 'diariesList' }" class="navbar__item"
-                ><i class="fa fa-list-ol navbar__icon" aria-hidden="true"></i
+                ><i
+                    class="fa fa-pencil-square-o navbar__icon"
+                    aria-hidden="true"
+                ></i
                 >MY日記</router-link
             >
             <router-link :to="{ name: 'analysis' }" class="navbar__item"

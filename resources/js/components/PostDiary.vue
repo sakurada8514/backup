@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
     props: {
         item: {
@@ -66,16 +67,11 @@ export default {
         },
         //日時日本語化処理
         entryDay() {
-            const dateTime = this.item.entry_at.split(" ");
-            const date = dateTime[0];
-            const dateJp = date.replace("-", "年").replace("-", "月") + "日 ";
-            const time = dateTime[1].slice(0, 5);
-            const dayData = date.split("-");
-            const day = new Date(dayData[0], (dayData[1]-1), dayData[2]);
-            const weekJp = ["日", "月", "火", "水", "木", "金", "土"];
-            const dayJp = weekJp[day.getDay()];
-            const entryDay = dateJp + time + " " + dayJp;
-            return entryDay;
+            moment.locale("ja");
+            const date = moment(this.item.entry_at).format(
+                "YYYY年MM月DD日 HH:mm ddd"
+            );
+            return date;
         },
 
     },

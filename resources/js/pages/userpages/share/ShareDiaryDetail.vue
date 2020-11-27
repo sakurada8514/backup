@@ -238,6 +238,7 @@
 </template>
 
 <script>
+import moment from "moment";
 import { VueLoading } from "vue-loading-template";
 import { OK, UNPROCESSABLE_ENTITY } from "../../../util";
 export default {
@@ -280,12 +281,11 @@ export default {
         },
         //日時日本語化処理
         createdDay() {
-            const dateTime = this.diary.created_at.split(" ");
-            const date = dateTime[0];
-            const dateJp = date.replace("-", "年").replace("-", "月") + "日 ";
-            const time = dateTime[1].slice(0, 5);
-            const createdDay = dateJp + time;
-            return createdDay;
+            moment.locale("ja");
+            const date = moment(this.diary.created_at).format(
+                "YYYY年MM月DD日 HH:mm"
+            );
+            return date;
         }
     },
     methods: {
@@ -403,16 +403,11 @@ export default {
             if (!data) {
                 return null;
             }
-            const dateTime = data.split(" ");
-            const date = dateTime[0];
-            const dateJp = date.replace("-", "年").replace("-", "月") + "日 ";
-            const time = dateTime[1].slice(0, 5);
-            const dayData = date.split("-");
-            const day = new Date(dayData[0], (dayData[1]-1), dayData[2]);
-            const weekJp = ["日", "月", "火", "水", "木", "金", "土"];
-            const dayJp = weekJp[day.getDay()];
-            const result = dateJp + time + " " + dayJp;
-            return result;
+            moment.locale("ja");
+            const date = moment(data).format(
+                "YYYY年MM月DD日 HH:mm ddd"
+            );
+            return date;
         }
     },
     created() {

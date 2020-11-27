@@ -19,7 +19,8 @@
                         <span v-if="item.result === 'win'">利確</span>
                         <span v-else-if="item.result === 'lose'">損切り</span>
                         <span v-else>エントリー中</span>
-                        {{ item.settlement }}<span v-if="item.result !== 'entry'">円</span>
+                        {{ item.settlement
+                        }}<span v-if="item.result !== 'entry'">円</span>
                     </p>
                 </div>
             </div>
@@ -45,6 +46,7 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
     props: {
         item: {
@@ -68,18 +70,12 @@ export default {
         },
         //日時日本語化処理
         entryDay() {
-            const dateTime = this.item.entry_at.split(" ");
-            const date = dateTime[0];
-            const dateJp = date.replace("-", "年").replace("-", "月") + "日 ";
-            const time = dateTime[1].slice(0, 5);
-            const dayData = date.split("-");
-            const day = new Date(dayData[0], (dayData[1]-1), dayData[2]);
-            const weekJp = ["日", "月", "火", "水", "木", "金", "土"];
-            const dayJp = weekJp[day.getDay()];
-            const entryDay = dateJp + time + " " + dayJp;
-            return entryDay;
-        },
-
+            moment.locale("ja");
+            const date = moment(this.item.entry_at).format(
+                "YYYY年MM月DD日 HH:mm ddd"
+            );
+            return date;
+        }
     },
     methods: {
         //文章省略処理

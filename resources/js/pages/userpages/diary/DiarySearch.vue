@@ -39,14 +39,16 @@
                         type="radio"
                         value="ロング"
                         v-model="searchForm.position"
-                    /><span>ロング</span>
+                        id="long"
+                    /><label class="search-form__item--radio-label" for="long">ロング</label>
                     <input
                         class="search-form__item--radio"
                         name="position"
                         type="radio"
                         value="ショート"
                         v-model="searchForm.position"
-                    /><span>ショート</span>
+                        id="short"
+                    /><label class="search-form__item--radio-label" for="short">ショート</label>
                 </div>
                 <div class="search-form__item">
                     <label class="search-form__item--label radio" for="result"
@@ -59,21 +61,24 @@
                         value="entry"
                         checked
                         v-model="searchForm.result"
-                    /><span>エントリー中</span>
+                        id="entry"
+                    /><label class="search-form__item--radio-label" for="entry">エントリー中</label>
                     <input
                         class="search-form__item--radio"
                         name="result"
                         type="radio"
                         value="win"
                         v-model="searchForm.result"
-                    /><span>利確</span>
+                        id="win"
+                    /><label class="search-form__item--radio-label" for="win">利確</label>
                     <input
                         class="search-form__item--radio"
                         name="result"
                         type="radio"
                         value="lose"
                         v-model="searchForm.result"
-                    /><span>損切り</span>
+                        id="lose"
+                    /><label class="search-form__item--radio-label" for="lose">損切り</label>
                 </div>
             </div>
             <div class="search-form__buttonarea">

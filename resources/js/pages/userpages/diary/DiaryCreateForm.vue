@@ -58,15 +58,17 @@
                         name="position"
                         type="radio"
                         value="ロング"
+                        id="long"
                         v-model="diaryCreateForm.position"
-                    /><span>ロング</span>
+                    /><label class="diary-form__item--radio-label" for="long">ロング</label>
                     <input
                         class="diary-form__item--radio"
                         name="position"
                         type="radio"
                         value="ショート"
+                        id="short"
                         v-model="diaryCreateForm.position"
-                    /><span>ショート</span>
+                    /><label class="diary-form__item--radio-label" for="short">ショート</label>
                     <!-- エラーメッセージ -->
                     <ul v-if="diariesErrors" class="form__error">
                         <li
@@ -88,22 +90,25 @@
                         type="radio"
                         value="entry"
                         checked
+                        id="entry"
                         v-model="diaryCreateForm.result"
-                    /><span>エントリー中</span>
+                    /><label class="diary-form__item--radio-label" for="entry">エントリー中</label>
                     <input
                         class="diary-form__item--radio"
                         name="result"
                         type="radio"
                         value="win"
+                        id="win"
                         v-model="diaryCreateForm.result"
-                    /><span>利確</span>
+                    /><label class="diary-form__item--radio-label" for="win">利確</label>
                     <input
                         class="diary-form__item--radio"
                         name="result"
                         type="radio"
                         value="lose"
+                        id="lose"
                         v-model="diaryCreateForm.result"
-                    /><span>損切り</span>
+                    /><label class="diary-form__item--radio-label" for="lose">損切り</label>
                     <!-- エラーメッセージ -->
                     <ul v-if="diariesErrors" class="form__error">
                         <li

@@ -5,13 +5,14 @@ import Top from "./pages/Top.vue";
 import Login from "./pages/Login.vue";
 import Register from "./pages/Register.vue";
 import UserPage from "./pages/userpages/UserPage.vue";
-import Diaries from "./pages/userpages/diary/Diaries.vue";
-import DiaryList from "./pages/userpages/diary/DiaryList.vue";
+import DiaryPage from "./pages/userpages/diary/DiaryPage.vue";
+import ListPage from "./pages/userpages/diary/DiaryListPage.vue";
+import List from "./pages/userpages/diary/List.vue";
 import DiaryCreateForm from "./pages/userpages/diary/DiaryCreateForm.vue";
 import DiarySearch from "./pages/userpages/diary/DiarySearch.vue";
 import DiaryDetail from "./pages/userpages/diary/DiaryDetail.vue";
 import DiaryEditForm from "./pages/userpages/diary/DiaryEditForm.vue";
-import Share from "./pages/userpages/share/Share.vue";
+import SharePage from "./pages/userpages/share/SharePage.vue";
 import ShareList from "./pages/userpages/share/ShareList.vue";
 import MyPage from "./pages/userpages/share/mypage/MyPage.vue";
 import MyShareDiarie from "./pages/userpages/share/mypage/MyShareDiaries.vue";
@@ -22,6 +23,7 @@ import ShareDiaryDetail from "./pages/userpages/share/ShareDiaryDetail.vue";
 import PostDiaryDetail from "./pages/userpages/share/posts/PostDiaryDetail.vue";
 import Analysis from "./pages/userpages/Analysis.vue";
 import System from "./pages/System.vue";
+import Calender from "./pages/userpages/diary/Calender.vue";
 
 Vue.use(VueRouter);
 
@@ -69,12 +71,29 @@ const routes = [
         children: [
             {
                 path: "list",
-                component: Diaries,
+                component: DiaryPage,
                 children: [
                     {
                         path: "",
-                        component: DiaryList,
-                        name: "diariesList"
+                        component: ListPage,
+                        children: [
+                            {
+                                path: "",
+                                component: List,
+                                name: "diariesList"
+                            },
+                            {
+                                path: "calender",
+                                component: Calender,
+                                name: 'carender'
+                            },
+
+                        ]
+                    },
+                    {
+                        path: "calender",
+                        component: Calender,
+                        name: "calender"
                     },
                     {
                         path: "create",
@@ -101,7 +120,7 @@ const routes = [
             },
             {
                 path: "share",
-                component: Share,
+                component: SharePage,
                 children: [
                     {
                         path: "",

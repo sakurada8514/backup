@@ -1,12 +1,6 @@
 <template>
     <!-- マイ日記一覧ページ -->
     <div class="diarylist">
-        <router-link :to="{ name: 'create' }" class="toDiaryCreateForm"
-            ><i class="fa fa-pencil" aria-hidden="true"></i
-        ></router-link>
-        <router-link :to="{ name: 'search' }" class="toDiarySearch"
-            ><i class="fa fa-search" aria-hidden="true"></i
-        ></router-link>
         <Diary
             v-for="diary in diaries"
             :key="`my-${diary.id}`"
