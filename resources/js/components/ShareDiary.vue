@@ -16,7 +16,7 @@
                     alt=""
                 />
                 <i
-                    class="fa fa-user-circle profile__icon"
+                    class="fa fa-user-circle"
                     aria-hidden="true"
                     v-else
                 ></i>
